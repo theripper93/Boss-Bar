@@ -1,0 +1,22 @@
+.bossBarName {
+  text-align: left;
+  font-size: large;
+}
+
+.bossBarCurrent {
+  position: fixed;
+  transition: width 1s;
+}
+
+.bossBarMax {
+  position: fixed;
+  transition: width 2s;
+}
+
+.bossBar {
+  z-index: 1000;
+  position: fixed;
+  top: 12px;
+  left: 120px;
+  max-width: calc(100% - 440px);
+}
