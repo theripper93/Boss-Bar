@@ -66,6 +66,7 @@ class BossBar {
 
   static remove() {
     canvas.scene.unsetFlag("bossbar", "bossBarActive").then(() => {
+      canvas.scene._bossBars={}
       this.clearAll();
     });
   }
