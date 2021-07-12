@@ -35,6 +35,15 @@ Hooks.once("init", function () {
     default: 20,
   });
 
+  game.settings.register("bossbar", "cameraPan", {
+    name: game.i18n.localize("bossbar.settings.cameraPan.name"),
+    hint: game.i18n.localize("bossbar.settings.cameraPan.hint"),
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
+
   game.settings.register("bossbar", "backgroundPath", {
     name: game.i18n.localize("bossbar.settings.backgroundPath.name"),
     hint: game.i18n.localize("bossbar.settings.backgroundPath.hint"),

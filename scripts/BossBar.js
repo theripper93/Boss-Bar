@@ -21,6 +21,7 @@ class BossBar {
       let oldBars = canvas.scene.getFlag("bossbar", "bossBarActive")
       if(Array.isArray(oldBars)){oldBars.push(token.id)}else{oldBars=[token.id]}
       await canvas.scene.setFlag("bossbar", "bossBarActive", oldBars);
+      if(game.settings.get("bossbar", "cameraPan"))BossBar.panCamera(token)
     }
     this.hookId = Hooks.on("updateActor", (actor, updates) => {
       if (
@@ -82,6 +83,20 @@ class BossBar {
     canvas.scene._bossBars[bossBar.id] = bossBar;
   }
 
+  static cameraPan(tokenId,scale,duration){
+    const token = canvas.tokens.get(tokenId)
+    canvas.animatePan({
+      x: token.center.x,
+      y: token.center.y,
+      scale: scale,
+      duration: duration,
+    });
+  }
+
+  static panCamera(token,scale=1.8,duration=1000){
+    _BossBarSocket.executeForEveryone("cameraPan", token.id,scale,duration);
+  }
+
   get currentHp() {
     return Object.byString(
       this.actor.data,
@@ -105,7 +120,7 @@ class BossBar {
   }
 
   get name() {
-    return this.actor.data.name;
+    return this.token.data.name;
   }
 
   get id() {
