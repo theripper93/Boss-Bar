@@ -26,6 +26,15 @@ Hooks.once("init", function () {
     default: 20,
   });
 
+  game.settings.register("bossbar", "textSize", {
+    name: game.i18n.localize("bossbar.settings.textSize.name"),
+    hint: game.i18n.localize("bossbar.settings.textSize.hint"),
+    scope: "world",
+    config: true,
+    type: Number,
+    default: 20,
+  });
+
   game.settings.register("bossbar", "backgroundPath", {
     name: game.i18n.localize("bossbar.settings.backgroundPath.name"),
     hint: game.i18n.localize("bossbar.settings.backgroundPath.hint"),
@@ -51,7 +60,10 @@ Hooks.on("updateScene", async (scene, updates) => {
   if (!game.user.isGM) {
     if (updates.flags?.bossbar) {
       const ids = canvas.scene.getFlag("bossbar", "bossBarActive");
-      if (!ids) return;
+      if (!ids){
+        if(canvas.scene._bossBars) delete canvas.scene._bossBars
+        return;
+      }
       for (let id of ids) {
         if (canvas.scene._bossBars && canvas.scene._bossBars[id]) {
           canvas.scene._bossBars[id].draw(
@@ -91,16 +103,18 @@ Hooks.on("getSceneControlButtons", (controls, b, c) => {
   controls
     .find((c) => c.name == "token")
     .tools.push({
-      name: "toggleCylinder",
+      name: "bossBar",
       title: game.i18n.localize("bossbar.controls.bossUI.name"),
       icon: "fas fa-pastafarianism",
       toggle: true,
       visible: game.user.isGM,
       active: isBoss,
-      onClick: (toggle) => {
+      onClick: async (toggle) => {
         if (toggle) {
           if (canvas.tokens.controlled[0]) {
-            BossBar.create(canvas.tokens.controlled[0]);
+            for(let token of canvas.tokens.controlled){
+              await BossBar.create(token);
+            }
           } else {
             ui.notifications.warn(
               game.i18n.localize("bossbar.controls.bossUI.warn")

@@ -4,6 +4,7 @@ class BossBar {
     this.token;
     this.bgPath = game.settings.get("bossbar", "backgroundPath");
     this.fgPath = game.settings.get("bossbar", "foregroundPath");
+    this.textSize = game.settings.get("bossbar", "textSize")
   }
 
   static async create(token, render = true) {
@@ -13,7 +14,6 @@ class BossBar {
     this.addBossBar(instance)
     if (render) instance.draw(game.settings.get("bossbar", "barHeight"));
     if (game.user.isGM){
-      debugger
       let oldBars = canvas.scene.getFlag("bossbar", "bossBarActive")
       if(Array.isArray(oldBars)){oldBars.push(token.id)}else{oldBars=[token.id]}
       await canvas.scene.setFlag("bossbar", "bossBarActive", oldBars);
@@ -32,13 +32,14 @@ class BossBar {
   draw(h) {
     if($("body").find(`div[id="bossBar-${this.id}"]`).length > 0) return
     $("#navigation").append(
-      `<div style="flex-basis: 100%;height: 0;"></div><div id ="bossBar-${this.id}" class="bossBar">
-        <a class="bossBarName">${this.name}</a>
+      `<div style="flex-basis: 100%;height: 0px;" id ="bossBarSpacer-${this.id}"></div><div id ="bossBar-${this.id}" class="bossBar">
+        <a class="bossBarName" style="font-size: ${this.textSize}px;">${this.name}</a>
         <div id ="bossBarBar-${this.id}" style="z-index: 1000;">
           <img id="bossBarMax-${this.id}" class="bossBarMax" src="${this.bgPath}" alt="test" width="100%" height="${h}">
           <img id="bossBarCurrent-${this.id}" class="bossBarCurrent" src="${this.fgPath}" alt="test" width="100%" height="${h}">
         </div>
       </div>
+      <div style="flex-basis: 100%;height: ${this.textSize+3}px;" id ="bossBarSpacer-${this.id}"></div>
       `
     );
     this.update();
@@ -55,17 +56,17 @@ class BossBar {
   }
 
   static clearAll(){
-    debugger
     if(!canvas.scene._bossBars) return
     for(let bar of Object.entries(canvas.scene._bossBars)){
       $("body").find(`div[id="bossBar-${bar[1].id}"]`).remove();
+      $("body").find(`div[id="bossBarSpacer-${bar[1].id}"]`).remove();
     }
 
   }
 
-  remove() {
+  static remove() {
     canvas.scene.unsetFlag("bossbar", "bossBarActive").then(() => {
-      this.clear();
+      this.clearAll();
     });
   }
 

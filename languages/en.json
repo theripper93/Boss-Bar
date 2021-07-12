@@ -10,5 +10,7 @@
     "bossbar.settings.backgroundPath.name":"Background Image",
     "bossbar.settings.backgroundPath.hint":"Image to be placed as the healthbar background",
     "bossbar.settings.foregroundPath.name":"Foreground Image",
-    "bossbar.settings.foregroundPath.hint":"Image to be palced as the healthbar foreground, this image will be resized depending on hp %"
+    "bossbar.settings.foregroundPath.hint":"Image to be palced as the healthbar foreground, this image will be resized depending on hp %",
+    "bossbar.settings.textSize.name":"Font Size",
+    "bossbar.settings.textSize.hint":"Font Size in pixels"
 }
