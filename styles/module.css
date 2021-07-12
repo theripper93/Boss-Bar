@@ -9,7 +9,7 @@
 
 .bossBarCurrent {
   position: absolute;
-  transition: width 1s;
+  transition: width 4s;
 }
 
 .bossBarMax {
