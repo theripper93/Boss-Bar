@@ -17,6 +17,15 @@ Hooks.once("init", function () {
     default: "data.attributes.hp.max",
   });
 
+  game.settings.register("bossbar", "barHeight", {
+    name: game.i18n.localize("bossbar.settings.barHeight.name"),
+    hint: game.i18n.localize("bossbar.settings.barHeight.hint"),
+    scope: "world",
+    config: true,
+    type: Number,
+    default: 20,
+  });
+
   game.settings.register("bossbar", "backgroundPath", {
     name: game.i18n.localize("bossbar.settings.backgroundPath.name"),
     hint: game.i18n.localize("bossbar.settings.backgroundPath.hint"),
@@ -38,7 +47,51 @@ Hooks.once("init", function () {
   });
 });
 
-Hooks.once("ready", async function () {});
+Hooks.on("updateScene", (scene, updates) => {
+  if (updates.flags?.bossbar) {
+    BossBar.create(canvas.tokens.get(updates.flags?.bossbar.bossBarActive));
+  } else {
+    BossBar.clear();
+  }
+});
+
+Hooks.on("renderApplication", () => {
+  if (canvas.scene) {
+    let tId = canvas.scene.getFlag("bossbar", "bossBarActive");
+    if (tId) {
+      BossBar.create(canvas.tokens.get(tId));
+    } else {
+      BossBar.clear();
+    }
+  }
+});
+
+Hooks.on("getSceneControlButtons", (controls, b, c) => {
+  let isBoss = canvas.scene.getFlag("bossbar", "bossBarActive") ? true : false;
+  controls
+    .find((c) => c.name == "token")
+    .tools.push(
+      {
+        name: "toggleCylinder",
+        title: game.i18n.localize("bossbar.controls.bossUI.name"),
+        icon: "fas fa-pastafarianism",
+        toggle: true,
+        visible: game.user.isGM,
+        active: isBoss,
+        onClick: (toggle) => {
+          if(toggle){
+            if(canvas.tokens.controlled[0]){
+              BossBar.create(canvas.tokens.controlled[0])
+            }else{
+              ui.notifications.warn(game.i18n.localize("bossbar.controls.bossUI.warn"))
+            }
+          }else{
+            BossBar.remove()
+          }
+        }
+      }
+    );
+});
 
 Object.byString = function (o, s) {
   s = s.replace(/\[(\w+)\]/g, ".$1"); // convert indexes to properties

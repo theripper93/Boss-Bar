@@ -1,3 +1,14 @@
 {
-    "MODULE.hello": "hello"
+    "bossbar.controls.bossUI.name":"Toggle Boss Bar",
+    "bossbar.controls.bossUI.warn":"No token selected. Please select a single token and try again",
+    "bossbar.settings.currentHpPath.name":"Current HP Path",
+    "bossbar.settings.currentHpPath.hint":"Data path to the current hp of an actor",
+    "bossbar.settings.maxHpPath.name":"Max HP Path",
+    "bossbar.settings.maxHpPath.hint":"Data path to the max hp of an actor",
+    "bossbar.settings.barHeight.name":"Boss Bar Height",
+    "bossbar.settings.barHeight.hint":"Height of the boss bar in pixels",
+    "bossbar.settings.backgroundPath.name":"Background Image",
+    "bossbar.settings.backgroundPath.hint":"Image to be placed as the healthbar background",
+    "bossbar.settings.foregroundPath.name":"Foreground Image",
+    "bossbar.settings.foregroundPath.hint":"Image to be palced as the healthbar foreground, this image will be resized depending on hp %"
 }

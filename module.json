@@ -14,7 +14,7 @@
       {
           "lang": "en",
           "name": "English",
-          "path": "lang/en.json"
+          "path": "languages/en.json"
       }
   ],
   "scripts": [
@@ -32,5 +32,9 @@
   "manifest": "https://github.com/theripper93/Boss-Bar/releases/latest/download/module.json",
   "download": "https://github.com/theripper93/Boss-Bar/releases/latest/download/module.zip",
   "dependencies": [
+    {
+        "name": "socketlib",
+        "type": "module"
+    }
   ]
 }

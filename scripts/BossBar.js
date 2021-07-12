@@ -5,16 +5,18 @@ class BossBar {
     this.fgPath = game.settings.get("bossbar", "foregroundPath");
   }
 
-  static create(actor, render = true) {
+  static create(token, render = true) {
+    this.clear()
     let instance = new BossBar();
-    instance.actor = actor;
-    if (render) instance.draw(1000, 50);
+    instance.actor = token.actor;
+    if (render) instance.draw(game.settings.get("bossbar", "barHeight"));
+    canvas.scene.setFlag("bossbar","bossBarActive",token.id)
     return instance;
   }
 
-  draw(maxW, h) {
-    $("body").append(
-      `<div id ="bossBar" class="bossBar">
+  draw(h) {
+    $("#navigation").append(
+      `<div style="flex-basis: 100%;height: 0;"></div><div id ="bossBar" class="bossBar">
         <a class="bossBarName">${this.name}</a>
         <div id ="bossBarBar" style="z-index: 1000;">
           <img id="bossBarMax" class="bossBarMax" src="${this.bgPath}" alt="test" width="100%" height="${h}">
@@ -25,12 +27,11 @@ class BossBar {
     );
     this.update();
     const bossBar = this;
-    Hooks.on("updateToken", (token, updates) => {
+    Hooks.on("updateActor", (actor, updates) => {
       if (
-        token.actor.id == this.actor.id &&
-        updates.actorData &&
+        actor.id == this.actor.id &&
         Object.byString(
-          updates.actorData,
+          updates,
           game.settings.get("bossbar", "currentHpPath")
         )
       ) {
@@ -39,14 +40,18 @@ class BossBar {
     });
   }
 
-  set visible(visible) {
-    this.bossBarGraphics.visible = visible;
-  }
-
   update() {
     document
       .getElementById("bossBarCurrent")
       .setAttribute("style", `width:${this.hpPercent}%;`);
+  }
+
+  static clear(){
+    $("body").find('div[id="bossBar"]').remove();
+  }
+
+  static remove(){
+    canvas.scene.unsetFlag("bossbar","bossBarActive").then(()=>{BossBar.clear()})
   }
 
   get currentHp() {

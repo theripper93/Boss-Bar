@@ -1,22 +1,27 @@
 .bossBarName {
   text-align: left;
   font-size: large;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 3px;
+  border-radius: 3px;
 }
 
 .bossBarCurrent {
-  position: fixed;
+  position: absolute;
   transition: width 1s;
 }
 
 .bossBarMax {
-  position: fixed;
+  position: absolute;
   transition: width 2s;
 }
 
 .bossBar {
   z-index: 1000;
-  position: fixed;
-  top: 12px;
-  left: 120px;
-  max-width: calc(100% - 440px);
+  width: calc(100% - 440px);
+}
+
+#bossBarBar {
+  z-index: 1000;
+  margin-top: 5px;
 }
