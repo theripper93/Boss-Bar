@@ -47,50 +47,70 @@ Hooks.once("init", function () {
   });
 });
 
-Hooks.on("updateScene", (scene, updates) => {
-  if (updates.flags?.bossbar) {
-    BossBar.create(canvas.tokens.get(updates.flags?.bossbar.bossBarActive));
-  } else {
-    BossBar.clear();
-  }
-});
-
-Hooks.on("renderApplication", () => {
-  if (canvas.scene) {
-    let tId = canvas.scene.getFlag("bossbar", "bossBarActive");
-    if (tId) {
-      BossBar.create(canvas.tokens.get(tId));
+Hooks.on("updateScene", async (scene, updates) => {
+  if (!game.user.isGM) {
+    if (updates.flags?.bossbar) {
+      const ids = canvas.scene.getFlag("bossbar", "bossBarActive");
+      if (!ids) return;
+      for (let id of ids) {
+        if (canvas.scene._bossBars && canvas.scene._bossBars[id]) {
+          canvas.scene._bossBars[id].draw(
+            game.settings.get("bossbar", "barHeight")
+          );
+          return;
+        } else {
+          await BossBar.create(canvas.tokens.get(id));
+        }
+      }
     } else {
       BossBar.clear();
     }
   }
 });
 
+Hooks.on("renderApplication", async () => {
+  if (canvas.scene) {
+    BossBar.clearAll()
+    const ids = canvas.scene.getFlag("bossbar", "bossBarActive");
+    if (!ids) return;
+    for (let id of ids) {
+      if (canvas.scene._bossBars && canvas.scene._bossBars[id]) {
+        canvas.scene._bossBars[id].draw(
+          game.settings.get("bossbar", "barHeight")
+        );
+      } else {
+        await BossBar.create(canvas.tokens.get(id));
+      }
+    }
+  }
+});
+
 Hooks.on("getSceneControlButtons", (controls, b, c) => {
+  if (!canvas.scene) return;
   let isBoss = canvas.scene.getFlag("bossbar", "bossBarActive") ? true : false;
   controls
     .find((c) => c.name == "token")
-    .tools.push(
-      {
-        name: "toggleCylinder",
-        title: game.i18n.localize("bossbar.controls.bossUI.name"),
-        icon: "fas fa-pastafarianism",
-        toggle: true,
-        visible: game.user.isGM,
-        active: isBoss,
-        onClick: (toggle) => {
-          if(toggle){
-            if(canvas.tokens.controlled[0]){
-              BossBar.create(canvas.tokens.controlled[0])
-            }else{
-              ui.notifications.warn(game.i18n.localize("bossbar.controls.bossUI.warn"))
-            }
-          }else{
-            BossBar.remove()
+    .tools.push({
+      name: "toggleCylinder",
+      title: game.i18n.localize("bossbar.controls.bossUI.name"),
+      icon: "fas fa-pastafarianism",
+      toggle: true,
+      visible: game.user.isGM,
+      active: isBoss,
+      onClick: (toggle) => {
+        if (toggle) {
+          if (canvas.tokens.controlled[0]) {
+            BossBar.create(canvas.tokens.controlled[0]);
+          } else {
+            ui.notifications.warn(
+              game.i18n.localize("bossbar.controls.bossUI.warn")
+            );
           }
+        } else {
+          BossBar.remove();
         }
-      }
-    );
+      },
+    });
 });
 
 Object.byString = function (o, s) {
