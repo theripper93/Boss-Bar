@@ -1,0 +1,14 @@
+{
+    "bossbar.controls.bossUI.name":"Activar Barra de Jefe",
+    "bossbar.controls.bossUI.warn":"Ningún token seleccionado. Por favor selecciona un único token e inténtalo de nuevo.",
+    "bossbar.settings.currentHpPath.name":"Dirección actual de PG",
+    "bossbar.settings.currentHpPath.hint":"Dirección de Datos a los PG actuales de un actor.",
+    "bossbar.settings.maxHpPath.name":"Dirección de PG Max",
+    "bossbar.settings.maxHpPath.hint":"Dirección de Datos a los PG max. de un actor",
+    "bossbar.settings.barHeight.name":"Altura de Barra de Jefe",
+    "bossbar.settings.barHeight.hint":"Altura de la barra de jefe en píxeles",
+    "bossbar.settings.backgroundPath.name":"Imagen de fondo",
+    "bossbar.settings.backgroundPath.hint":"Imagen para colocar como fondo de la barra de salud.",
+    "bossbar.settings.foregroundPath.name":"Imagen de Primer Plano",
+    "bossbar.settings.foregroundPath.hint":"Imagen para colocar como primer plano de la barra de salud, esta imagen se redimensionará dependiendo del % de PG"
+}

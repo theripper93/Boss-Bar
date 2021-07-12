@@ -7,10 +7,14 @@ class BossBar {
     this.textSize = game.settings.get("bossbar", "textSize")
   }
 
-  static async create(token, render = true) {
+  static async create(token,render = true) {
     let instance = new BossBar();
     instance.actor = token.actor;
     instance.token = token
+    let bgFlag = token.document.getFlag("bossbar", "bgTex")
+    let fgFlag = token.document.getFlag("bossbar", "fgTex")
+    if(bgFlag) instance.bgPath = bgFlag
+    if(fgFlag) instance.fgPath = fgFlag
     this.addBossBar(instance)
     if (render) instance.draw(game.settings.get("bossbar", "barHeight"));
     if (game.user.isGM){
