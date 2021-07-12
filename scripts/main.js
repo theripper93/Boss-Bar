@@ -32,7 +32,7 @@ Hooks.once("init", function () {
     scope: "world",
     config: true,
     type: String,
-    default: "modules/bossbar/resources/background.webp",
+    default: "modules/bossbar/resources/Dark.webp",
     filePicker: true,
   });
 
@@ -42,7 +42,7 @@ Hooks.once("init", function () {
     scope: "world",
     config: true,
     type: String,
-    default: "modules/bossbar/resources/foreground.webp",
+    default: "modules/bossbar/resources/Blood.webp",
     filePicker: true,
   });
 });
