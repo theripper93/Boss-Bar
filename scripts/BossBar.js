@@ -21,7 +21,6 @@ class BossBar {
       let oldBars = canvas.scene.getFlag("bossbar", "bossBarActive")
       if(Array.isArray(oldBars)){oldBars.push(token.id)}else{oldBars=[token.id]}
       await canvas.scene.setFlag("bossbar", "bossBarActive", oldBars);
-      if(game.settings.get("bossbar", "cameraPan"))BossBar.panCamera(token)
     }
     this.hookId = Hooks.on("updateActor", (actor, updates) => {
       if (
