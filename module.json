@@ -49,6 +49,10 @@
     {
         "name": "socketlib",
         "type": "module"
-    }
+    },
+    {
+      "name": "colorsettings",
+      "type": "module"
+  }
   ]
 }

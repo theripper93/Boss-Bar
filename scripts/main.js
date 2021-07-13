@@ -1,4 +1,4 @@
-Hooks.once("init", function () {
+Hooks.once("ready", function () {
   game.settings.register("bossbar", "currentHpPath", {
     name: game.i18n.localize("bossbar.settings.currentHpPath.name"),
     hint: game.i18n.localize("bossbar.settings.currentHpPath.hint"),
@@ -63,14 +63,30 @@ Hooks.once("init", function () {
     default: "modules/bossbar/resources/Blood.webp",
     filePicker: true,
   });
+
+  new window.Ardittristan.ColorSetting("bossbar", "tempBarColor", {
+    name: game.i18n.localize("bossbar.settings.tempBarColor.name"),
+    hint: game.i18n.localize("bossbar.settings.tempBarColor.hint"),
+    label: game.i18n.localize("bossbar.settings.tempBarColor.label"),
+    restricted: true,
+    defaultColor: "#7e7e7e",
+    scope: "world",
+  });
+
+  Hooks.on("renderApplication", async () => {
+    BossBar.renderBossBar();
+  });
+  BossBar.renderBossBar();
 });
+
+Hooks.once("ready", function () {});
 
 Hooks.on("updateScene", async (scene, updates) => {
   if (!game.user.isGM) {
     if (updates.flags?.bossbar) {
       const ids = canvas.scene.getFlag("bossbar", "bossBarActive");
-      if (!ids){
-        if(canvas.scene._bossBars) delete canvas.scene._bossBars
+      if (!ids) {
+        if (canvas.scene._bossBars) delete canvas.scene._bossBars;
         return;
       }
       for (let id of ids) {
@@ -85,23 +101,6 @@ Hooks.on("updateScene", async (scene, updates) => {
       }
     } else {
       BossBar.clear();
-    }
-  }
-});
-
-Hooks.on("renderApplication", async () => {
-  if (canvas.scene) {
-    BossBar.clearAll()
-    const ids = canvas.scene.getFlag("bossbar", "bossBarActive");
-    if (!ids) return;
-    for (let id of ids) {
-      if (canvas.scene._bossBars && canvas.scene._bossBars[id]) {
-        canvas.scene._bossBars[id].draw(
-          game.settings.get("bossbar", "barHeight")
-        );
-      } else {
-        await BossBar.create(canvas.tokens.get(id));
-      }
     }
   }
 });
@@ -121,9 +120,10 @@ Hooks.on("getSceneControlButtons", (controls, b, c) => {
       onClick: async (toggle) => {
         if (toggle) {
           if (canvas.tokens.controlled[0]) {
-            for(let token of canvas.tokens.controlled){
+            for (let token of canvas.tokens.controlled) {
               await BossBar.create(token);
-              if(game.settings.get("bossbar", "cameraPan"))BossBar.panCamera(token)
+              if (game.settings.get("bossbar", "cameraPan"))
+                BossBar.panCamera(token);
             }
           } else {
             ui.notifications.warn(

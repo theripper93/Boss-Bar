@@ -4,6 +4,7 @@ class BossBar {
     this.token;
     this.bgPath = game.settings.get("bossbar", "backgroundPath");
     this.fgPath = game.settings.get("bossbar", "foregroundPath");
+    this.tempBarColor = game.settings.get("bossbar", "tempBarColor")
     this.textSize = game.settings.get("bossbar", "textSize")
   }
 
@@ -36,11 +37,12 @@ class BossBar {
   draw(h) {
     if($("body").find(`div[id="bossBar-${this.id}"]`).length > 0) return
     $("#navigation").append(
-      `<div style="flex-basis: 100%;height: 0px;" id ="bossBarSpacer-${this.id}"></div><div id ="bossBar-${this.id}" class="bossBar">
+      `<div style="flex-basis: 100%;height: 0px;" id="bossBarSpacer-${this.id}"></div><div id="bossBar-${this.id}" class="bossBar">
         <a class="bossBarName" style="font-size: ${this.textSize}px;">${this.name}</a>
         <div id ="bossBarBar-${this.id}" style="z-index: 1000;">
-          <img id="bossBarMax-${this.id}" class="bossBarMax" src="${this.bgPath}" alt="test" width="100%" height="${h}">
-          <img id="bossBarCurrent-${this.id}" class="bossBarCurrent" src="${this.fgPath}" alt="test" width="100%" height="${h}">
+          <div id="bossBarMax-${this.id}" class="bossBarMax" style="background-image:url('${this.bgPath}');height:${h}px;"></div>
+          <div id="bossBarTemp-${this.id}" class="bossBarTemp" style="background-color:${this.tempBarColor};height:${h}px"></div>
+          <div id="bossBarCurrent-${this.id}" class="bossBarCurrent" style="background-image:url('${this.fgPath}');height:${h}px"></div>
         </div>
       </div>
       <div style="flex-basis: 100%;height: ${this.textSize+3}px;" id ="bossBarSpacer-${this.id}"></div>
@@ -52,7 +54,10 @@ class BossBar {
   update() {
     document
       .getElementById(`bossBarCurrent-${this.id}`)
-      .setAttribute("style", `width:${this.hpPercent}%;`);
+      .style.setProperty("width", `${this.hpPercent}%`);
+    document
+      .getElementById(`bossBarTemp-${this.id}`)
+      .style.setProperty("width", `${this.hpPercent}%`);
   }
 
   clear() {
@@ -94,6 +99,23 @@ class BossBar {
 
   static panCamera(token,scale=1.8,duration=1000){
     _BossBarSocket.executeForEveryone("cameraPan", token.id,scale,duration);
+  }
+
+  static async renderBossBar(){
+    if (canvas.scene) {
+      BossBar.clearAll()
+      const ids = canvas.scene.getFlag("bossbar", "bossBarActive");
+      if (!ids) return;
+      for (let id of ids) {
+        if (canvas.scene._bossBars && canvas.scene._bossBars[id]) {
+          canvas.scene._bossBars[id].draw(
+            game.settings.get("bossbar", "barHeight")
+          );
+        } else {
+          await BossBar.create(canvas.tokens.get(id));
+        }
+      }
+    }
   }
 
   get currentHp() {

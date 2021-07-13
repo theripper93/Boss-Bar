@@ -9,12 +9,27 @@
 
 .bossBarCurrent {
   position: absolute;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
+  background-repeat: repeat;
   transition: width 4s;
+  width: 100%;
 }
 
 .bossBarMax {
   position: absolute;
+  background-size: 500%;
   transition: width 4s;
+  width: 100%;
+}
+
+.bossBarTemp {
+  position: absolute;
+  border-radius: 3px;
+  transition: width 1s;
+  transition-delay: 3s;
+  width: 100%;
 }
 
 .bossBar {
