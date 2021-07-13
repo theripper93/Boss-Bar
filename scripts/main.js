@@ -54,7 +54,8 @@ Hooks.once("ready", function () {
       0: game.i18n.localize("bossbar.settings.position.opt0"),
       1: game.i18n.localize("bossbar.settings.position.opt1"),
       2: game.i18n.localize("bossbar.settings.position.opt2"),
-      3: game.i18n.localize("bossbar.settings.position.opt3")
+      3: game.i18n.localize("bossbar.settings.position.opt3"),
+      4: game.i18n.localize("bossbar.settings.position.opt4")
     },
     default: 0,
   });

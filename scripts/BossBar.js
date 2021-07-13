@@ -41,7 +41,8 @@ class BossBar {
 
   draw(h) {
     if ($("body").find(`div[id="bossBar-${this.id}"]`).length > 0) return; //#navigation
-    const bossBarHtml = `<div style="flex-basis: 100%;height: 0px;" id="bossBarSpacer-${
+    let bossBarContainer = `<div id="bossBarContainer"></div>`;
+    let bossBarHtml = `<div style="flex-basis: 100%;height: 0px;" id="bossBarSpacer-${
       this.id
     }"></div><div id="bossBar-${this.id}" class="bossBar">
     <a class="bossBarName" style="font-size: ${this.textSize}px;">${
@@ -57,12 +58,12 @@ class BossBar {
         this.id
       }" class="bossBarTemp" style="background-color:${
       this.tempBarColor
-    };height:${h}px"></div>
+    };height:${h}px;width:${this.hpPercent}%"></div>
       <div id="bossBarCurrent-${
         this.id
       }" class="bossBarCurrent" style="background-image:url('${
       this.fgPath
-    }');height:${h}px"></div>
+    }');height:${h}px;width:${this.hpPercent}%"></div>
     </div>
   </div>
   <div style="flex-basis: 100%;height: ${
@@ -81,6 +82,21 @@ class BossBar {
         break;
       case 3:
         $("#players").prepend(bossBarHtml);
+        break;
+      case 4:
+        if ($("body").find(`div[id="bossBarContainer"]`).length == 0) {
+          $("body").append(bossBarContainer);
+        }
+        $("#bossBarContainer").append(bossBarHtml);
+        $("#bossBarContainer").css({
+          position: "fixed",
+          bottom:
+            $("#hotbar").outerHeight(true) +
+            $(".bossBar").outerHeight(true) +
+            10,
+          width: "calc(100% - 330px)",
+          left: 15,
+        });
         break;
     }
     this.update();
@@ -107,11 +123,10 @@ class BossBar {
     }
   }
 
-  static remove() {
-    canvas.scene.unsetFlag("bossbar", "bossBarActive").then(() => {
-      canvas.scene._bossBars = {};
-      this.clearAll();
-    });
+  static async remove() {
+    await canvas.scene.unsetFlag("bossbar", "bossBarActive");
+    canvas.scene._bossBars = {};
+    this.clearAll();
   }
 
   static addBossBar(bossBar) {

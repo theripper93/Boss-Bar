@@ -23,5 +23,6 @@
     "bossbar.settings.position.opt0":"Top (default)",
     "bossbar.settings.position.opt1":"Bottom (above webcams)",
     "bossbar.settings.position.opt2":"Bottom (below webcams)",
-    "bossbar.settings.position.opt3":"In player List"
+    "bossbar.settings.position.opt3":"In player List",
+    "bossbar.settings.position.opt4":"Bottom (above hotbar)"
 }

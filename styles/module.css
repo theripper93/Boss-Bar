@@ -1,6 +1,7 @@
 .bossBarName {
   text-align: left;
   font-size: 10px;
+  color: white;
   filter: drop-shadow(0 0 0.2rem black);
   font-family:'Times New Roman', Times, serif;
   padding: 3px;
