@@ -147,6 +147,7 @@ Hooks.on("getSceneControlButtons", (controls, b, c) => {
             );
           }
         } else {
+          await canvas.scene.unsetFlag("bossbar", "bossBarActive");
           BossBar.remove();
         }
       },
