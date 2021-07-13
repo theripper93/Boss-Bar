@@ -31,7 +31,7 @@ class BossBar {
     this.hookId = Hooks.on("updateActor", (actor, updates) => {
       if (
         actor.id == instance.actor.id &&
-        Object.byString(updates, game.settings.get("bossbar", "currentHpPath"))
+        Object.byString(updates, game.settings.get("bossbar", "currentHpPath")) !== undefined
       ) {
         instance.update();
       }
@@ -115,6 +115,17 @@ class BossBar {
     $("body").find(`div[id="bossBar-${this.id}"]`).remove();
   }
 
+  async destroy() {
+    const flag = canvas.scene.getFlag("bossbar", "bossBarActive");
+    let newFlag = [];
+    for (let id of flag) {
+      if (id == this.token.id) continue;
+      newFlag.push(id);
+    }
+    await canvas.scene.setFlag("bossbar", "bossBarActive", newFlag);
+    this.unHook();
+  }
+
   static clearAll() {
     if (!canvas.scene._bossBars) return;
     for (let bar of Object.entries(canvas.scene._bossBars)) {
@@ -127,6 +138,10 @@ class BossBar {
     await canvas.scene.unsetFlag("bossbar", "bossBarActive");
     canvas.scene._bossBars = {};
     this.clearAll();
+  }
+
+  unHook() {
+    Hooks.off(this.hookId);
   }
 
   static addBossBar(bossBar) {

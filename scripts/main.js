@@ -55,7 +55,7 @@ Hooks.once("ready", function () {
       1: game.i18n.localize("bossbar.settings.position.opt1"),
       2: game.i18n.localize("bossbar.settings.position.opt2"),
       3: game.i18n.localize("bossbar.settings.position.opt3"),
-      4: game.i18n.localize("bossbar.settings.position.opt4")
+      4: game.i18n.localize("bossbar.settings.position.opt4"),
     },
     default: 0,
   });
@@ -102,7 +102,12 @@ Hooks.on("updateScene", async (scene, updates) => {
     if (updates.flags?.bossbar) {
       const ids = canvas.scene.getFlag("bossbar", "bossBarActive");
       if (!ids) {
-        if (canvas.scene._bossBars) delete canvas.scene._bossBars;
+        if (canvas.scene._bossBars) {
+          for (let bar of Object.entries(canvas.scene._bossBars)) {
+            bar[1].unHook();
+          }
+          delete canvas.scene._bossBars;
+        }
         return;
       }
       for (let id of ids) {
