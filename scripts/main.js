@@ -44,6 +44,21 @@ Hooks.once("ready", function () {
     default: false,
   });
 
+  game.settings.register("bossbar", "position", {
+    name: game.i18n.localize("bossbar.settings.position.name"),
+    hint: game.i18n.localize("bossbar.settings.position.hint"),
+    scope: "world",
+    config: true,
+    type: Number,
+    choices: {
+      0: game.i18n.localize("bossbar.settings.position.opt0"),
+      1: game.i18n.localize("bossbar.settings.position.opt1"),
+      2: game.i18n.localize("bossbar.settings.position.opt2"),
+      3: game.i18n.localize("bossbar.settings.position.opt3")
+    },
+    default: 0,
+  });
+
   game.settings.register("bossbar", "backgroundPath", {
     name: game.i18n.localize("bossbar.settings.backgroundPath.name"),
     hint: game.i18n.localize("bossbar.settings.backgroundPath.hint"),
