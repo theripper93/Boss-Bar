@@ -89,8 +89,10 @@ Hooks.once("ready", function () {
     scope: "world",
   });
 
-  Hooks.on("renderApplication", async () => {
-    BossBar.renderBossBar();
+  Hooks.on("renderApplication", (app) => {
+    if (app.id == "controls" || app.id =="navigation" || app.id == "camera-views") {
+      BossBar.renderBossBar();
+    }
   });
   BossBar.renderBossBar();
 });
