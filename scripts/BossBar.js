@@ -103,6 +103,8 @@ class BossBar {
   }
 
   update() {
+    const isBar = document.getElementById(`bossBarCurrent-${this.id}`)
+    if(!isBar) return;
     document
       .getElementById(`bossBarCurrent-${this.id}`)
       .style.setProperty("width", `${this.hpPercent}%`);
