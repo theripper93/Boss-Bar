@@ -142,6 +142,10 @@ class BossBar {
     this.clearAll();
   }
 
+  static async removeForEveryone() {
+    _BossBarSocket.executeForEveryone("remove");
+  }
+
   unHook() {
     Hooks.off(this.hookId);
   }
