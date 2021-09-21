@@ -113,7 +113,7 @@ class BossBar {
       .style.setProperty("width", `${this.hpPercent}%`);
   }
 
-  clear() {
+  static clear() {
     $("body").find(`div[id="bossBar-${this.id}"]`).remove();
   }
 
@@ -139,7 +139,7 @@ class BossBar {
   static async remove() {
     await canvas.scene.unsetFlag("bossbar", "bossBarActive");
     canvas.scene._bossBars = {};
-    this.clearAll();
+    BossBar.clearAll();
   }
 
   static async removeForEveryone() {
