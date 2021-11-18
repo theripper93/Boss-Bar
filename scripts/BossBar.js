@@ -72,7 +72,7 @@ class BossBar {
   `;
     switch (this.position) {
       case 0:
-        $("#navigation").append(bossBarHtml);
+        $("#ui-top").append(bossBarHtml);
         break;
       case 1:
         $("#camera-views").prepend(bossBarHtml);

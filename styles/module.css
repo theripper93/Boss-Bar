@@ -35,7 +35,8 @@
 
 .bossBar {
   z-index: 1000;
-  width: calc(100% - 440px);
+  width: 100%;
+  position: relative;
 }
 
 #bossBarBar {
