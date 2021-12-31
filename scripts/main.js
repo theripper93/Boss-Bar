@@ -100,6 +100,7 @@ Hooks.once("ready", function () {
 Hooks.once("ready", function () {});
 
 Hooks.on("updateScene", async (scene, updates) => {
+  debugger
   if (!game.user.isGM) {
     if (updates.flags?.bossbar) {
       const ids = canvas.scene.getFlag("bossbar", "bossBarActive");
@@ -123,7 +124,7 @@ Hooks.on("updateScene", async (scene, updates) => {
         }
       }
     } else {
-      BossBar.clear();
+      //BossBar.clearAll();
     }
   }
 });

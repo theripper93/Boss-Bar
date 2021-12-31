@@ -144,6 +144,7 @@ class BossBar {
 
   unHook() {
     Hooks.off(this.hookId);
+    this.clear();
   }
 
   static addBossBar(bossBar) {
