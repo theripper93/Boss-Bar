@@ -90,6 +90,8 @@ class BossBar {
           left: 15 + cameraContainerW,
         });
         break;
+      default:
+        $("#ui-top").append(bossBarHtml);
     }
 
 
