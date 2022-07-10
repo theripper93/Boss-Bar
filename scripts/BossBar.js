@@ -31,7 +31,7 @@ class BossBar {
     this.hookId = Hooks.on("updateActor", (actor, updates) => {
       if (
         actor.id == instance.actor.id &&
-        Object.byString(updates, game.settings.get("bossbar", "currentHpPath")) !== undefined
+        Object.byString(updates.system, game.settings.get("bossbar", "currentHpPath")) !== undefined
       ) {
         instance.update();
       }
@@ -75,17 +75,9 @@ class BossBar {
         $("#ui-top").append(bossBarHtml);
         break;
       case 1:
-        $("#camera-views").prepend(bossBarHtml);
-        break;
-      case 2:
-        $("#camera-views").append(bossBarHtml);
-        break;
-      case 3:
-        $("#players").prepend(bossBarHtml);
-        break;
-      case 4:
-        if ($("body").find(`div[id="bossBarContainer"]`).length == 0) {
-          $("body").append(bossBarContainer);
+        const cameraContainerW = $("#camera-views").width();
+        if ($("#bossBarContainer").length == 0) {
+          $("#ui-bottom").find("div").first().prepend(bossBarContainer);
         }
         $("#bossBarContainer").append(bossBarHtml);
         $("#bossBarContainer").css({
@@ -94,11 +86,14 @@ class BossBar {
             $("#hotbar").outerHeight(true) +
             $(".bossBar").outerHeight(true) +
             10,
-          width: "calc(100% - 330px)",
-          left: 15,
+          width: `calc(100% - 330px - ${cameraContainerW}px)`,
+          left: 15 + cameraContainerW,
         });
         break;
     }
+
+
+
     this.update();
   }
 
@@ -187,14 +182,14 @@ class BossBar {
 
   get currentHp() {
     return Object.byString(
-      this.actor.data,
+      this.actor.system,
       game.settings.get("bossbar", "currentHpPath")
     );
   }
 
   get maxHp() {
     return Object.byString(
-      this.actor.data,
+      this.actor.system,
       game.settings.get("bossbar", "maxHpPath")
     );
   }
@@ -208,7 +203,7 @@ class BossBar {
   }
 
   get name() {
-    return this.token.data.name;
+    return this.token.document.name;
   }
 
   get id() {

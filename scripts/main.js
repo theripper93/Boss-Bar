@@ -5,7 +5,7 @@ Hooks.once("ready", function () {
     scope: "world",
     config: true,
     type: String,
-    default: "data.attributes.hp.value",
+    default: "attributes.hp.value",
   });
 
   game.settings.register("bossbar", "maxHpPath", {
@@ -14,7 +14,7 @@ Hooks.once("ready", function () {
     scope: "world",
     config: true,
     type: String,
-    default: "data.attributes.hp.max",
+    default: "attributes.hp.max",
   });
 
   game.settings.register("bossbar", "barHeight", {
@@ -53,9 +53,6 @@ Hooks.once("ready", function () {
     choices: {
       0: game.i18n.localize("bossbar.settings.position.opt0"),
       1: game.i18n.localize("bossbar.settings.position.opt1"),
-      2: game.i18n.localize("bossbar.settings.position.opt2"),
-      3: game.i18n.localize("bossbar.settings.position.opt3"),
-      4: game.i18n.localize("bossbar.settings.position.opt4"),
     },
     default: 0,
   });

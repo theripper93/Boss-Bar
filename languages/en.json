@@ -21,7 +21,7 @@
     "bossbar.settings.position.name":"Position",
     "bossbar.settings.position.hint":"Position of the boss bars. Webcam positioning options require webcams to be active.",
     "bossbar.settings.position.opt0":"Top (default)",
-    "bossbar.settings.position.opt1":"Bottom (above webcams)",
+    "bossbar.settings.position.opt1":"Bottom",
     "bossbar.settings.position.opt2":"Bottom (below webcams)",
     "bossbar.settings.position.opt3":"In player List",
     "bossbar.settings.position.opt4":"Bottom (above hotbar)"
