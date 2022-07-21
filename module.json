@@ -70,5 +70,8 @@
   "compatibility": {
     "minimum": "10",
     "verified": "10"
-  }
+  },
+
+  "name": "bossbar",
+  "minimumCoreVersion": "10"
 }
