@@ -197,7 +197,7 @@ class BossBar {
   }
 
   get hpPercent() {
-    return Math.round((100 * this.currentHp) / this.maxHp);
+    return Math.max(0, Math.round((100 * this.currentHp) / this.maxHp));
   }
 
   get hpPercentAsString() {
