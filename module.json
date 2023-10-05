@@ -21,6 +21,19 @@
       "path": "languages/es.json"
     },
     {
+      "lang": "pt",
+      "name": "Português",
+      "path": "languages/pt.json"
+    },   {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "languages/pt-BR.json"
+    },   {
+      "lang": "pt-PT",
+      "name": "Português (Portugal)",
+      "path": "languages/pt-PT.json"
+    },
+    {
       "lang": "de",
       "name": "Deutsch",
       "path": "languages/de.json"
