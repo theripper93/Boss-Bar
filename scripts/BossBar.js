@@ -28,7 +28,7 @@ class BossBar {
       }
       await canvas.scene.setFlag("bossbar", "bossBarActive", oldBars);
     }
-    this.hookId = Hooks.on("updateActor", (actor, updates) => {
+    instance.hookId = Hooks.on("updateActor", (actor, updates) => {
       if (
         actor.id == instance.actor.id &&
         Object.byString(updates.system, game.settings.get("bossbar", "currentHpPath")) !== undefined
@@ -36,13 +36,38 @@ class BossBar {
         instance.update();
       }
     });
+
+    instance.CTHook = Hooks.on("renderCombatTracker", (app, html, data) => {
+      instance.CCTSetPosition();
+    });
+    instance.CCTHook = Hooks.on("combatDock:playIntroAnimation:finished", (app, html, data) => {
+      instance.CCTSetPosition(0);
+    });
+    instance.CCTCloseHook = Hooks.on("closeCombatDock", (app, html, data) => {
+      instance.CCTSetPosition();
+    });
     return instance;
+  }
+
+  CCTSetPosition(delay = 0) {
+    setTimeout(() => {
+      const combatDockElement = document.getElementById("combat-dock");
+      const spacer = document.querySelector(".bossBarSpacer");
+      spacer.style.setProperty("height", "0px");
+      const spacerDistanceFromTop = spacer.getBoundingClientRect().top;
+      if (!combatDockElement || combatDockElement.classList.contains("hidden")) {
+        spacer.style.setProperty("height", "0px");
+        return;
+      }
+      const height = combatDockElement.offsetHeight - spacerDistanceFromTop;
+      spacer.style.setProperty("height", `${height}px`);
+    }, delay);
   }
 
   draw(h) {
     if ($("body").find(`div[id="bossBar-${this.id}"]`).length > 0) return; //#navigation
     let bossBarContainer = `<div id="bossBarContainer"></div>`;
-    let bossBarHtml = `<div style="flex-basis: 100%;height: 0px;" id="bossBarSpacer-${
+    let bossBarHtml = `<div class="bossBarSpacer" style="transition: height 0.3s ease-in-out; flex-basis: 100%;height: 0px;" id="bossBarSpacer-${
       this.id
     }"></div><div id="bossBar-${this.id}" class="bossBar">
     <a class="bossBarName" style="font-size: ${this.textSize}px;">${
@@ -108,6 +133,7 @@ class BossBar {
     document
       .getElementById(`bossBarTemp-${this.id}`)
       .style.setProperty("width", `${this.hpPercent}%`);
+    this.CCTSetPosition();
   }
 
   clear() {
@@ -140,7 +166,10 @@ class BossBar {
   }
 
   unHook() {
-    Hooks.off(this.hookId);
+    Hooks.off("updateActor", this.hookId);
+    Hooks.off("renderCombatTracker", this.CTHook)
+    Hooks.off("renderCombatDock", this.CCTHook)
+    Hooks.off("closeCombatDock", this.CCTCloseHook)
     this.clear();
   }
 
