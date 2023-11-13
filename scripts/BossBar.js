@@ -51,16 +51,21 @@ class BossBar {
 
   CCTSetPosition(delay = 0) {
     setTimeout(() => {
-      const combatDockElement = document.getElementById("combat-dock");
-      const spacer = document.querySelector(".bossBarSpacer");
-      spacer.style.setProperty("height", "0px");
-      const spacerDistanceFromTop = spacer.getBoundingClientRect().top;
-      if (!combatDockElement || combatDockElement.classList.contains("hidden")) {
+      try {
+        const combatDockElement = document.getElementById("combat-dock");
+        const spacer = document.querySelector(".bossBarSpacer");
+        if (!spacer) return;
         spacer.style.setProperty("height", "0px");
-        return;
+        const spacerDistanceFromTop = spacer.getBoundingClientRect().top;
+        if (!combatDockElement || combatDockElement.classList.contains("hidden")) {
+          spacer.style.setProperty("height", "0px");
+          return;
+        }
+        const height = combatDockElement.offsetHeight - spacerDistanceFromTop;
+        spacer.style.setProperty("height", `${height*0.8}px`);
+      } catch (error) {
       }
-      const height = combatDockElement.offsetHeight - spacerDistanceFromTop;
-      spacer.style.setProperty("height", `${height}px`);
+
     }, delay);
   }
 
