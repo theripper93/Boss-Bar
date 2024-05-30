@@ -77,13 +77,13 @@ Hooks.once("ready", function () {
     filePicker: true,
   });
 
-  new window.Ardittristan.ColorSetting("bossbar", "tempBarColor", {
+  game.settings.register("bossbar", "tempBarColor", {
     name: game.i18n.localize("bossbar.settings.tempBarColor.name"),
     hint: game.i18n.localize("bossbar.settings.tempBarColor.hint"),
-    label: game.i18n.localize("bossbar.settings.tempBarColor.label"),
-    restricted: true,
-    defaultColor: "#7e7e7e",
     scope: "world",
+    config: true,
+    type: String,
+    default: "#7e7e7e",
   });
 
   Hooks.on("renderApplication", (app) => {

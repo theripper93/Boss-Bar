@@ -74,11 +74,6 @@
         "id": "socketlib",
         "type": "module",
         "compatibility": {}
-      },
-      {
-        "id": "colorsettings",
-        "type": "module",
-        "compatibility": {}
       }
     ]
   },
