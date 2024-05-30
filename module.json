@@ -24,11 +24,13 @@
       "lang": "pt",
       "name": "Português",
       "path": "languages/pt.json"
-    },   {
+    },
+    {
       "lang": "pt-BR",
       "name": "Português (Brasil)",
       "path": "languages/pt-BR.json"
-    },   {
+    },
+    {
       "lang": "pt-PT",
       "name": "Português (Portugal)",
       "path": "languages/pt-PT.json"
@@ -81,7 +83,7 @@
     ]
   },
   "compatibility": {
-    "minimum": "11",
-    "verified": "11"
+    "minimum": "12",
+    "verified": "12"
   }
 }
