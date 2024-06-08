@@ -91,14 +91,20 @@ class BossBar {
             case 1:
                 const cameraContainerW = $("#camera-views").width();
                 if ($("#bossBarContainer").length == 0) {
-                    $("#ui-bottom").find("div").first().prepend(bossBarContainer);
+                    const wrapper = $("<div id='bossBarContainer'></div>");
+                    wrapper.append(bossBarHtml);
+                    $("#ui-bottom").prepend(wrapper);
                 }
                 $("#bossBarContainer").append(bossBarHtml);
                 $("#bossBarContainer").css({
                     position: "fixed",
                     bottom: $("#hotbar").outerHeight(true) + $(".bossBar").outerHeight(true) + 10,
-                    width: `calc(100% - 330px - ${cameraContainerW}px)`,
+                    width: `calc(94% - 330px - ${cameraContainerW}px)`,
+                    margin: "1rem 3%",
                     left: 15 + cameraContainerW,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
                 });
                 break;
             default:
