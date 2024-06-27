@@ -1,4 +1,6 @@
-class BossBar {
+import {Socket} from "./lib/socket.js";
+
+export class BossBar {
     constructor() {
         this.actor;
         this.token;
@@ -29,7 +31,7 @@ class BossBar {
             await canvas.scene.setFlag("bossbar", "bossBarActive", oldBars);
         }
         instance.hookId = Hooks.on("updateActor", (actor, updates) => {
-            if (actor.id == instance.actor.id && Object.byString(updates.system, game.settings.get("bossbar", "currentHpPath")) !== undefined) {
+            if (actor.id == instance.actor.id && foundry.utils.getProperty(updates.system, game.settings.get("bossbar", "currentHpPath")) !== undefined) {
                 instance.update();
             }
         });
@@ -166,7 +168,7 @@ class BossBar {
         canvas.scene._bossBars[bossBar.id] = bossBar;
     }
 
-    static cameraPan(tokenId, scale, duration) {
+    static cameraPan({tokenId, scale, duration}) {
         const token = canvas.tokens.get(tokenId);
         canvas.animatePan({
             x: token.center.x,
@@ -177,7 +179,7 @@ class BossBar {
     }
 
     static panCamera(token, scale = 1.8, duration = 1000) {
-        _BossBarSocket.executeForEveryone("cameraPan", token.id, scale, duration);
+        Socket.cameraPan({tokenId: token.id, scale: scale, duration: duration});
     }
 
     static async renderBossBar() {
@@ -196,11 +198,11 @@ class BossBar {
     }
 
     get currentHp() {
-        return Object.byString(this.actor.system, game.settings.get("bossbar", "currentHpPath"));
+        return foundry.utils.getProperty(this.actor.system, game.settings.get("bossbar", "currentHpPath"));
     }
 
     get maxHp() {
-        return Object.byString(this.actor.system, game.settings.get("bossbar", "maxHpPath"));
+        return foundry.utils.getProperty(this.actor.system, game.settings.get("bossbar", "maxHpPath"));
     }
 
     get hpPercent() {

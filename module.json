@@ -46,10 +46,8 @@
       "path": "languages/ja.json"
     }
   ],
-  "scripts": [
-    "scripts/main.js",
-    "scripts/BossBar.js",
-    "scripts/cameraPan.js"
+  "esmodules": [
+    "scripts/main.js"
   ],
   "styles": [
     "styles/module.css"
@@ -70,11 +68,6 @@
   "id": "bossbar",
   "relationships": {
     "requires": [
-      {
-        "id": "socketlib",
-        "type": "module",
-        "compatibility": {}
-      }
     ]
   },
   "compatibility": {
