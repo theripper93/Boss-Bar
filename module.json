@@ -53,13 +53,6 @@
     "styles/module.css"
   ],
   "packs": [
-    {
-      "name": "bossbarmacros",
-      "label": "Boss Bar Macros",
-      "path": "packs/macros.db",
-      "type": "Macro",
-      "private": false
-    }
   ],
   "url": "https://github.com/theripper93/Boss-Bar",
   "manifest": "https://github.com/theripper93/Boss-Bar/releases/latest/download/module.json",

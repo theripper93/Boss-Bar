@@ -4,6 +4,9 @@ import { Socket } from "./lib/socket.js";
 export const MODULE_ID = "bossbar";
 
 Hooks.once("ready", function () {
+
+    ui.BossBar = BossBar;
+
     Socket.register("cameraPan", BossBar.cameraPan);
 
     game.settings.register("bossbar", "currentHpPath", {
