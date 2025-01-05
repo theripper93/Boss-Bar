@@ -1,7 +1,8 @@
 {
-  "title": "Boss Bar",
+  "title": "Bossbar",
   "description": "Add a souls-like boss healthbar to the scene",
-  "version": "0.1",
+  "id": "bossbar",
+  "version": "1.0",
   "authors": [
     {
       "name": "theripper93",
@@ -16,24 +17,9 @@
       "path": "languages/en.json"
     },
     {
-      "lang": "es",
-      "name": "Español",
-      "path": "languages/es.json"
-    },
-    {
-      "lang": "pt",
-      "name": "Português",
-      "path": "languages/pt.json"
-    },
-    {
-      "lang": "pt-BR",
-      "name": "Português (Brasil)",
-      "path": "languages/pt-BR.json"
-    },
-    {
-      "lang": "pt-PT",
-      "name": "Português (Portugal)",
-      "path": "languages/pt-PT.json"
+      "lang": "ja",
+      "name": "日本語",
+      "path": "languages/ja.json"
     },
     {
       "lang": "de",
@@ -41,24 +27,38 @@
       "path": "languages/de.json"
     },
     {
-      "lang": "ja",
-      "name": "日本語",
-      "path": "languages/ja.json"
+      "lang": "fr",
+      "name": "Français",
+      "path": "languages/fr.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "languages/es.json"
+    },
+    {
+      "lang": "pt-br",
+      "name": "Português (Brasil)",
+      "path": "languages/pt-br.json"
+    },
+    {
+      "lang": "it",
+      "name": "Italiano",
+      "path": "languages/it.json"
     }
   ],
+  "scripts": [],
   "esmodules": [
-    "scripts/main.js"
+    "index.js"
   ],
   "styles": [
     "styles/module.css"
   ],
-  "packs": [
-  ],
+  "packs": [],
   "url": "https://github.com/theripper93/Boss-Bar",
   "manifest": "https://github.com/theripper93/Boss-Bar/releases/latest/download/module.json",
   "download": "https://github.com/theripper93/Boss-Bar/releases/latest/download/module.zip",
   "socket": true,
-  "id": "bossbar",
   "relationships": {
     "requires": [
     ]

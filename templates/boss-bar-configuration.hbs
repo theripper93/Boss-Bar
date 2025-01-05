@@ -1,0 +1,34 @@
+<div>
+    <ul class="actor-options-list">
+        {{#each actorOptions as |actor|}}
+        <li data-uuid="{{actor.uuid}}">
+            <fieldset class="flexrow">
+                <legend>{{actor.document.name}}</legend>
+                <img src="{{actor.document.img}}" />
+                <select name="style">
+                    {{selectOptions ../barStyleOptions selected=actor.style}}
+                </select>
+                <button type="button" id="add"><i class="fas fa-plus"></i>{{localize "Add"}}</button>
+            </fieldset>
+        </li>
+        {{/each}}
+    </ul>
+    <hr>
+    <ul class="selected-actors-list">
+        {{#each actors as |actor|}}
+        <li data-uuid="{{actor.uuid}}">
+            <fieldset class="flexrow">
+                <legend>{{actor.document.name}}</legend>
+                <img src="{{actor.document.img}}" />
+                <select name="style">
+                    {{selectOptions ../barStyleOptions selected=actor.style}}
+                </select>
+                <button type="button" id="delete"><i class="fas fa-trash"></i>{{localize "Delete"}}</button>
+            </fieldset>
+        </li>
+        {{/each}}
+    </ul>
+    <footer>
+        <button type="button" id="save"><i class="fas fa-save"></i>{{localize "Save"}}</button>
+    </footer>
+</div>

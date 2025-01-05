@@ -1,0 +1,16 @@
+<div>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+    {{#each styles as |style|}}
+    <li>
+        <fieldset class="flexrow">
+            <label>{{style.name}}</label>
+            <button type="button" class="edit-style" data-style-id="{{style.id}}"><i class="fas fa-edit"></i>{{localize "Edit"}}</button>
+            <button type="button" class="delete-style" data-style-id="{{style.id}}"><i class="fas fa-trash"></i>{{localize "Delete"}}</button>
+        </fieldset>
+    </li>
+    {{/each}}
+    </ul>
+    <footer>
+        <button type="button" class="add-style"><i class="fas fa-plus"></i>{{localize "bossbar.bar-style-configuration.add"}}</button>
+    </footer>
+</div>

@@ -1,7 +1,25 @@
+import {initConfig} from "./config.js";
+import {registerSettings} from "./settings.js";
 import { BossBar } from "./BossBar.js";
 import { Socket } from "./lib/socket.js";
 
 export const MODULE_ID = "bossbar";
+
+export const BAR_STYLES = {
+    CLASSIC: 0,
+    MATCHING_IMAGES: 1,
+}
+
+export const BAR_STYLE_SELECT = {
+    0: "bossbar.settings.barStyle.classic",
+    1: "bossbar.settings.barStyle.matchingImages",
+}
+
+Hooks.on("init", () => {
+    initConfig();
+    registerSettings();
+});
+
 
 Hooks.once("ready", function () {
 
@@ -9,92 +27,7 @@ Hooks.once("ready", function () {
 
     Socket.register("cameraPan", BossBar.cameraPan);
 
-    game.settings.register("bossbar", "currentHpPath", {
-        name: game.i18n.localize("bossbar.settings.currentHpPath.name"),
-        hint: game.i18n.localize("bossbar.settings.currentHpPath.hint"),
-        scope: "world",
-        config: true,
-        type: String,
-        default: "attributes.hp.value",
-    });
-
-    game.settings.register("bossbar", "maxHpPath", {
-        name: game.i18n.localize("bossbar.settings.maxHpPath.name"),
-        hint: game.i18n.localize("bossbar.settings.maxHpPath.hint"),
-        scope: "world",
-        config: true,
-        type: String,
-        default: "attributes.hp.max",
-    });
-
-    game.settings.register("bossbar", "barHeight", {
-        name: game.i18n.localize("bossbar.settings.barHeight.name"),
-        hint: game.i18n.localize("bossbar.settings.barHeight.hint"),
-        scope: "world",
-        config: true,
-        type: Number,
-        default: 20,
-    });
-
-    game.settings.register("bossbar", "textSize", {
-        name: game.i18n.localize("bossbar.settings.textSize.name"),
-        hint: game.i18n.localize("bossbar.settings.textSize.hint"),
-        scope: "world",
-        config: true,
-        type: Number,
-        default: 20,
-    });
-
-    game.settings.register("bossbar", "cameraPan", {
-        name: game.i18n.localize("bossbar.settings.cameraPan.name"),
-        hint: game.i18n.localize("bossbar.settings.cameraPan.hint"),
-        scope: "world",
-        config: true,
-        type: Boolean,
-        default: false,
-    });
-
-    game.settings.register("bossbar", "position", {
-        name: game.i18n.localize("bossbar.settings.position.name"),
-        hint: game.i18n.localize("bossbar.settings.position.hint"),
-        scope: "world",
-        config: true,
-        type: Number,
-        choices: {
-            0: game.i18n.localize("bossbar.settings.position.opt0"),
-            1: game.i18n.localize("bossbar.settings.position.opt1"),
-        },
-        default: 0,
-    });
-
-    game.settings.register("bossbar", "backgroundPath", {
-        name: game.i18n.localize("bossbar.settings.backgroundPath.name"),
-        hint: game.i18n.localize("bossbar.settings.backgroundPath.hint"),
-        scope: "world",
-        config: true,
-        type: String,
-        default: "modules/bossbar/resources/Dark.webp",
-        filePicker: true,
-    });
-
-    game.settings.register("bossbar", "foregroundPath", {
-        name: game.i18n.localize("bossbar.settings.foregroundPath.name"),
-        hint: game.i18n.localize("bossbar.settings.foregroundPath.hint"),
-        scope: "world",
-        config: true,
-        type: String,
-        default: "modules/bossbar/resources/Blood.webp",
-        filePicker: true,
-    });
-
-    game.settings.register("bossbar", "tempBarColor", {
-        name: game.i18n.localize("bossbar.settings.tempBarColor.name"),
-        hint: game.i18n.localize("bossbar.settings.tempBarColor.hint"),
-        scope: "world",
-        config: true,
-        type: String,
-        default: "#7e7e7e",
-    });
+   
 
     Hooks.on("renderApplication", (app) => {
         if (app.id == "controls" || app.id == "navigation" || app.id == "camera-views") {
@@ -103,8 +36,6 @@ Hooks.once("ready", function () {
     });
     BossBar.renderBossBar();
 });
-
-Hooks.once("ready", function () {});
 
 Hooks.on("updateScene", async (scene, updates) => {
     if (!game.user.isGM) {
@@ -127,37 +58,6 @@ Hooks.on("updateScene", async (scene, updates) => {
                     await BossBar.create(canvas.tokens.get(id));
                 }
             }
-        } else {
-            //BossBar.clearAll();
         }
     }
-});
-
-Hooks.on("getSceneControlButtons", (controls, b, c) => {
-    if (!canvas.scene) return;
-    let isBoss = canvas.scene.getFlag("bossbar", "bossBarActive") ? true : false;
-    controls
-        .find((c) => c.name == "token")
-        .tools.push({
-            name: "bossBar",
-            title: game.i18n.localize("bossbar.controls.bossUI.name"),
-            icon: "fas fa-pastafarianism",
-            toggle: true,
-            visible: game.user.isGM,
-            active: isBoss,
-            onClick: async (toggle) => {
-                if (toggle) {
-                    if (canvas.tokens.controlled[0]) {
-                        for (let token of canvas.tokens.controlled) {
-                            await BossBar.create(token);
-                            if (game.settings.get("bossbar", "cameraPan")) BossBar.panCamera(token);
-                        }
-                    } else {
-                        ui.notifications.warn(game.i18n.localize("bossbar.controls.bossUI.warn"));
-                    }
-                } else {
-                    BossBar.remove();
-                }
-            },
-        });
 });

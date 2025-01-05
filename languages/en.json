@@ -1,28 +1,72 @@
 {
-    "bossbar.controls.bossUI.name":"Toggle Boss Bar",
-    "bossbar.controls.bossUI.warn":"No token selected. Please select one or multiple tokens and try again",
-    "bossbar.settings.currentHpPath.name":"Current HP Path",
-    "bossbar.settings.currentHpPath.hint":"Data path to the current hp of an actor",
-    "bossbar.settings.maxHpPath.name":"Max HP Path",
-    "bossbar.settings.maxHpPath.hint":"Data path to the max hp of an actor",
-    "bossbar.settings.barHeight.name":"Boss Bar Height",
-    "bossbar.settings.barHeight.hint":"Height of the boss bar in pixels",
-    "bossbar.settings.backgroundPath.name":"Background Image",
-    "bossbar.settings.backgroundPath.hint":"Image to be placed as the healthbar background",
-    "bossbar.settings.foregroundPath.name":"Foreground Image",
-    "bossbar.settings.foregroundPath.hint":"Image to be palced as the healthbar foreground, this image will be resized depending on hp %",
-    "bossbar.settings.textSize.name":"Font Size",
-    "bossbar.settings.textSize.hint":"Font Size in pixels",
-    "bossbar.settings.cameraPan.name":"Pan Camera to Boss when creating the health bars",
-    "bossbar.settings.cameraPan.hint":"When enabling the healthbars pan the camera to the token. When selecting multiple tokens the last one will be the one the camera pans to",
-    "bossbar.settings.tempBarColor.name":"Temporary healthbar color",
-    "bossbar.settings.tempBarColor.hint":"Set color for the temporary healthbar that shows when damage is taken",
-    "bossbar.settings.tempBarColor.label":"Color Picker",
-    "bossbar.settings.position.name":"Position",
-    "bossbar.settings.position.hint":"Position of the boss bars. Webcam positioning options require webcams to be active.",
-    "bossbar.settings.position.opt0":"Top (default)",
-    "bossbar.settings.position.opt1":"Bottom",
-    "bossbar.settings.position.opt2":"Bottom (below webcams)",
-    "bossbar.settings.position.opt3":"In player List",
-    "bossbar.settings.position.opt4":"Bottom (above hotbar)"
+    "bossbar": {
+        "controls": {
+            "bossUI": {
+                "name": "Toggle Boss Bar",
+                "warn": "No token selected. Please select one or multiple tokens and try again"
+            }
+        },
+        "settings": {
+            "barStyle": {
+                "classic": "Classic",
+                "matchingImages": "Matching Images"
+            },
+            "currentHpPath": {
+                "name": "Current HP Path",
+                "hint": "Data path to the current hp of an actor"
+            },
+            "maxHpPath": {
+                "name": "Max HP Path",
+                "hint": "Data path to the max hp of an actor"
+            },
+            "barHeight": {
+                "name": "Boss Bar Height",
+                "hint": "Height of the boss bar in pixels"
+            },
+            "backgroundPath": {
+                "name": "Background Image",
+                "hint": "Image to be placed as the healthbar background"
+            },
+            "foregroundPath": {
+                "name": "Foreground Image",
+                "hint": "Image to be palced as the healthbar foreground, this image will be resized depending on hp %"
+            },
+            "textSize": {
+                "name": "Font Size",
+                "hint": "Font Size in pixels"
+            },
+            "cameraPan": {
+                "name": "Pan Camera to Boss when creating the health bars",
+                "hint": "When enabling the healthbars pan the camera to the token. When selecting multiple tokens the last one will be the one the camera pans to"
+            },
+            "tempBarColor": {
+                "name": "Temporary healthbar color",
+                "hint": "Set color for the temporary healthbar that shows when damage is taken"
+            },
+            "BarStyleConfiguration": {
+                "name": "Boss Bar Styles",
+                "label": "Configure Styles"
+            }
+        },
+        "bar-style-configuration": {
+            "add": "Add Style",
+            "title": "Boss Bar Style Configuration",
+            "delete-title": "Delete Style",
+            "delete-confirm": "Are you sure you want to delete this style?",
+            "edit": "Edit Style",
+            "background": "Background Image",
+            "foreground": "Foreground Image",
+            "tempBarColor": "Temporary Healthbar Color",
+            "tempBarAlpha": "Temporary Healthbar Alpha",
+            "barHeight": "Boss Bar Height",
+            "textSize": "Font Size",
+            "type": "Style Type",
+            "type-hint": "Select the style type"
+        },
+        "boss-bar-configuration": {
+            "title": "Boss Bar Configuration",
+            "no-actors": "No actors selected or present in the scene.",
+            "no-scene": "No scene available. Please view a scene and try again"
+        }
+    }
 }

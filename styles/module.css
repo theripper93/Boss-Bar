@@ -1,9 +1,22 @@
+#boss-bar-configuration img {
+  max-width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: none;
+  border-radius: 3px;
+}
+#boss-bar-configuration ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .bossBarName {
   text-align: left;
   font-size: 10px;
   color: white;
   filter: drop-shadow(0 0 0.2rem black);
-  font-family:'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   padding: 3px;
   border-radius: 3px;
 }
@@ -42,4 +55,4 @@
 #bossBarBar {
   z-index: 1000;
   margin-top: 5px;
-}
+}/*# sourceMappingURL=module.css.map */
