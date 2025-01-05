@@ -9,11 +9,13 @@ export const DEFAULT_BAR_STYLE = {
     name: "Classic - Red",
     id: "default",
     background: "modules/bossbar/resources/Dark.webp",
-    foreground: "modules/bossbar/resources/Blood.webp",
+    bar: "modules/bossbar/resources/Blood.webp",
+    foreground: "",
     tempBarColor: "#7e7e7e",
     tempBarAlpha: 0.5,
     barHeight: 20,
     textSize: 20,
+    textAlign: "left",
     type: 0,
 };
 
@@ -21,17 +23,17 @@ const PREDEFINED_BAR_STYLES = [
     {
         ...DEFAULT_BAR_STYLE,
         id: "default-ice",
-        foreground: "modules/bossbar/resources/Ice.webp",
+        bar: "modules/bossbar/resources/Ice.webp",
     },
     {
         ...DEFAULT_BAR_STYLE,
         id: "default-grass",
-        foreground: "modules/bossbar/resources/Grass.webp",
+        bar: "modules/bossbar/resources/Grass.webp",
     },
     {
         ...DEFAULT_BAR_STYLE,
         id: "default-oak",
-        foreground: "modules/bossbar/resources/Oak.webp",
+        bar: "modules/bossbar/resources/Oak.webp",
     }
 ]
 
@@ -49,17 +51,6 @@ export function registerSettings() {
             scope: "client",
             type: Object,
             default: {},
-        },
-
-        handlePosition: {
-            scope: "client",
-            config: true,
-            type: String,
-            default: "bottom",
-            choices: {
-                bottom: `${MODULE_ID}.settings.handlePosition.bottom`,
-                top: `${MODULE_ID}.settings.handlePosition.top`,
-            },
         },
 
         resetPosition: {

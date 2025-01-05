@@ -1,28 +1,65 @@
 {
-    "bossbar.controls.bossUI.name":"Activar Barra de Jefe.",
-    "bossbar.controls.bossUI.warn":"Ningún token seleccionado. Por favor selecciona un único token e inténtalo de nuevo.",
-    "bossbar.settings.currentHpPath.name":"Dirección actual de PG.",
-    "bossbar.settings.currentHpPath.hint":"Dirección de datos a los PG actuales de un actor.",
-    "bossbar.settings.maxHpPath.name":"Dirección de PG Max.",
-    "bossbar.settings.maxHpPath.hint":"Dirección de datos a los PG max. de un actor.",
-    "bossbar.settings.barHeight.name":"Altura de barra de jefe.",
-    "bossbar.settings.barHeight.hint":"Altura de la barra de jefe en píxeles.",
-    "bossbar.settings.backgroundPath.name":"Imagen de fondo.",
-    "bossbar.settings.backgroundPath.hint":"Imagen para colocar como fondo de la barra de salud.",
-    "bossbar.settings.foregroundPath.name":"Imagen de primer plano.",
-    "bossbar.settings.foregroundPath.hint":"Imagen para colocar como primer plano de la barra de salud, esta imagen se redimensionará dependiendo del % de PG.",
-    "bossbar.settings.textSize.name":"Tamaño de fuente.",
-    "bossbar.settings.textSize.hint":"Tamaño de fuente en píxeles.",
-    "bossbar.settings.cameraPan.name":"Mover la cámara hacia el jefe cuando creas las barras de salud.",
-    "bossbar.settings.cameraPan.hint":"Cuando actives las barras de salud mueve la cámara hacia el token. Cuando selecciones varios tokens el último será hacia donde se mueva la cámara.",
-    "bossbar.settings.tempBarColor.name":"Color de la barra de salud temporal.",
-    "bossbar.settings.tempBarColor.hint":"Configura el color de la barra de salud temporal que se muestra al recibir daño.",
-    "bossbar.settings.tempBarColor.label":"Selector de color.",
-    "bossbar.settings.position.name":"Posición.",
-    "bossbar.settings.position.hint":"Posición de las barras de jefe. Las opciones de posición con webcam requiere que las webcams estén activas.",
-    "bossbar.settings.position.opt0":"Superior (por defecto).",
-    "bossbar.settings.position.opt1":"Inferior (encima de webcams).",
-    "bossbar.settings.position.opt2":"Inferior (debajo de webcams).",
-    "bossbar.settings.position.opt3":"En la lista de jugadores.",
-    "bossbar.settings.position.opt4":"Inferior (encima de barra de accesos directos)."
+    "bossbar": {
+        "bar-style-configuration": {
+            "add": "Agregar estilo",
+            "background": "Imagen de fondo",
+            "bar": "Imagen de barra",
+            "barHeight": "Altura de la barra del jefe",
+            "delete-confirm": "¿Estás seguro de que deseas eliminar este estilo?",
+            "delete-title": "Eliminar estilo",
+            "edit": "Editar estilo",
+            "foreground": "Imagen de primer plano",
+            "tempBarAlpha": "Barra de salud temporal alfa",
+            "tempBarColor": "Color de la barra de salud temporal",
+            "textAlign": "Alinear texto",
+            "textSize": "Tamaño de fuente",
+            "title": "Configuración del estilo de la barra principal",
+            "type": "Tipo de estilo",
+            "type-hint": "Seleccione el tipo de estilo"
+        },
+        "boss-bar-configuration": {
+            "edit-themes": "Cerca",
+            "hideNameHint": "Ocultar el nombre del actor en Boss Bar",
+            "no-actors": "No hay actores seleccionados ni presentes en la escena.",
+            "no-scene": "No hay escena disponible. \nPor favor, mira una escena e inténtalo de nuevo.",
+            "save-pan": "Ahorrar",
+            "title": "Configuración de la barra de jefe"
+        },
+        "boss-bar": {
+            "title": "barra del jefe"
+        },
+        "controls": {
+            "bossUI": {
+                "name": "Alternar barra de jefe",
+                "warn": "No se seleccionó ningún token. \nSeleccione uno o varios tokens e inténtelo de nuevo"
+            }
+        },
+        "settings": {
+            "BarStyleConfiguration": {
+                "label": "Configurar estilos",
+                "name": "Estilos de barra de jefe"
+            },
+            "barStyle": {
+                "classic": "Clásico",
+                "matchingImages": "Imágenes coincidentes"
+            },
+            "currentHpPath": {
+                "hint": "Ruta de datos al hp actual de un actor.",
+                "name": "Ruta actual de HP"
+            },
+            "maxHpPath": {
+                "hint": "Ruta de datos al hp máximo de un actor",
+                "name": "Ruta de HP máxima"
+            },
+            "resetPosition": {
+                "hint": "Restablecer la posición de la barra Boss a su valor predeterminado",
+                "name": "Restablecer posición"
+            },
+            "textAlign": {
+                "center": "Centro",
+                "left": "Izquierda",
+                "right": "Bien"
+            }
+        }
+    }
 }

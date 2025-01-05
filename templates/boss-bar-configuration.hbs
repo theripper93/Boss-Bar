@@ -20,6 +20,7 @@
             <fieldset class="flexrow">
                 <legend>{{actor.document.name}}</legend>
                 <img src="{{actor.document.img}}" />
+                <input type="checkbox" style="max-width: fit-content;" name="hideName" {{#if actor.hideName}}checked{{/if}} data-tooltip="bossbar.boss-bar-configuration.hideNameHint" />
                 <select name="style">
                     {{selectOptions ../barStyleOptions selected=actor.style}}
                 </select>

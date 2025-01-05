@@ -1,0 +1,65 @@
+{
+    "bossbar": {
+        "bar-style-configuration": {
+            "add": "Ajouter du style",
+            "background": "Image d'arrière-plan",
+            "bar": "Image de la barre",
+            "barHeight": "Hauteur de la barre de patron",
+            "delete-confirm": "Etes-vous sûr de vouloir supprimer ce style ?",
+            "delete-title": "Supprimer le style",
+            "edit": "Modifier le style",
+            "foreground": "Image de premier plan",
+            "tempBarAlpha": "Barre de santé temporaire Alpha",
+            "tempBarColor": "Couleur de la barre de santé temporaire",
+            "textAlign": "Aligner le texte",
+            "textSize": "Taille de la police",
+            "title": "Configuration du style de barre de boss",
+            "type": "Type de style",
+            "type-hint": "Sélectionnez le type de style"
+        },
+        "boss-bar-configuration": {
+            "edit-themes": "Fermer",
+            "hideNameHint": "Cacher le nom de l'acteur dans le Boss Bar",
+            "no-actors": "Aucun acteur sélectionné ou présent dans la scène.",
+            "no-scene": "Aucune scène disponible. \nVeuillez visionner une scène et réessayer",
+            "save-pan": "Sauvegarder",
+            "title": "Configuration de la barre de patron"
+        },
+        "boss-bar": {
+            "title": "Barre de patron"
+        },
+        "controls": {
+            "bossUI": {
+                "name": "Basculer la barre de boss",
+                "warn": "Aucun jeton sélectionné. \nVeuillez sélectionner un ou plusieurs jetons et réessayer"
+            }
+        },
+        "settings": {
+            "BarStyleConfiguration": {
+                "label": "Configurer les styles",
+                "name": "Styles de barre de patron"
+            },
+            "barStyle": {
+                "classic": "Classique",
+                "matchingImages": "Images correspondantes"
+            },
+            "currentHpPath": {
+                "hint": "Chemin de données vers les HP actuels d'un acteur",
+                "name": "Chemin HP actuel"
+            },
+            "maxHpPath": {
+                "hint": "Chemin de données vers les HP max d'un acteur",
+                "name": "Chemin de HP maximum"
+            },
+            "resetPosition": {
+                "hint": "Réinitialiser la position de la Boss Bar à la valeur par défaut",
+                "name": "Réinitialiser la position"
+            },
+            "textAlign": {
+                "center": "Centre",
+                "left": "Gauche",
+                "right": "Droite"
+            }
+        }
+    }
+}

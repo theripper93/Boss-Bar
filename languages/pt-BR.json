@@ -1,28 +1,65 @@
 {
-    "bossbar.controls.bossUI.name":"Alternar Ativação da Barra de Chefe",
-    "bossbar.controls.bossUI.warn":"Nenhum marcador (token) selecionado. Por favor selecione um ou multiplos marcadores e tente novamente",
-    "bossbar.settings.currentHpPath.name":"Caminho atual do HP",
-    "bossbar.settings.currentHpPath.hint":"Caminho para os dados para o hp atualizado de um ator",
-    "bossbar.settings.maxHpPath.name":"Caminho do HP Máximo",
-    "bossbar.settings.maxHpPath.hint":"Caminho para os dados do hp máximo de um ator",
-    "bossbar.settings.barHeight.name":"Altura da Barra do Chefe",
-    "bossbar.settings.barHeight.hint":"Altura em pixels  da Barra do Chefe",
-    "bossbar.settings.backgroundPath.name":"Imagem de Fundo",
-    "bossbar.settings.backgroundPath.hint":"Imagem para substituir o fundo de vida",
-    "bossbar.settings.foregroundPath.name":"Imagem de primeiro plano",
-    "bossbar.settings.foregroundPath.hint":"Imagem para ser substituída como a barra de vida. Esta imagem irá ser redimensionada dependendo da % de HP",
-    "bossbar.settings.textSize.name":"Tamanho da fonte",
-    "bossbar.settings.textSize.hint":"Tamanho da fonte em pixels",
-    "bossbar.settings.cameraPan.name":"Câmera Panorâmica para o Chefe quando criar a barra de vida",
-    "bossbar.settings.cameraPan.hint":"Quando habilitar a barra de vida panoramica a câmera irá para o token. Quando selecionado múltiplos tokens o último será para qual a câmera ira se mover.",
-    "bossbar.settings.tempBarColor.name":"Cor temporária para a barra de vida",
-    "bossbar.settings.tempBarColor.hint":"Configure a cor temporaria da barra de vida que será exibida quando houver dano",
-    "bossbar.settings.tempBarColor.label":"Seletor de cor",
-    "bossbar.settings.position.name":"Posição",
-    "bossbar.settings.position.hint":"Posição para a Barra do Chefe. A opção de 'Posicionamento webcam' requer webcam instalada para ser ativa.",
-    "bossbar.settings.position.opt0":"No alto (padrão)",
-    "bossbar.settings.position.opt1":"Em baixo",
-    "bossbar.settings.position.opt2":"Em baixo (em baixo da webcam)",
-    "bossbar.settings.position.opt3":"Na lista de jogadores",
-    "bossbar.settings.position.opt4":"Em baixo (sobre a barra de atalhos)"
+    "bossbar": {
+        "bar-style-configuration": {
+            "add": "Adicionar estilo",
+            "background": "Imagem de fundo",
+            "bar": "Imagem da barra",
+            "barHeight": "Altura da barra principal",
+            "delete-confirm": "Tem certeza de que deseja excluir este estilo?",
+            "delete-title": "Excluir estilo",
+            "edit": "Editar estilo",
+            "foreground": "Imagem de primeiro plano",
+            "tempBarAlpha": "Barra de Saúde Alfa Temporária",
+            "tempBarColor": "Cor temporária da barra de saúde",
+            "textAlign": "Alinhamento de texto",
+            "textSize": "Tamanho da fonte",
+            "title": "Configuração de estilo de barra principal",
+            "type": "Tipo de estilo",
+            "type-hint": "Selecione o tipo de estilo"
+        },
+        "boss-bar-configuration": {
+            "edit-themes": "Fechar",
+            "hideNameHint": "Esconda o nome do ator no Boss Bar",
+            "no-actors": "Nenhum ator selecionado ou presente na cena.",
+            "no-scene": "Nenhuma cena disponível. \nPor favor, veja uma cena e tente novamente",
+            "save-pan": "Salvar",
+            "title": "Configuração da barra principal"
+        },
+        "boss-bar": {
+            "title": "Barra do Chefe"
+        },
+        "controls": {
+            "bossUI": {
+                "name": "Alternar barra de chefe",
+                "warn": "Nenhum token selecionado. \nSelecione um ou vários tokens e tente novamente"
+            }
+        },
+        "settings": {
+            "BarStyleConfiguration": {
+                "label": "Configurar estilos",
+                "name": "Estilos de Boss Bar"
+            },
+            "barStyle": {
+                "classic": "Clássico",
+                "matchingImages": "Imagens correspondentes"
+            },
+            "currentHpPath": {
+                "hint": "Caminho de dados para o HP atual de um ator",
+                "name": "Caminho atual da HP"
+            },
+            "maxHpPath": {
+                "hint": "Caminho de dados para o HP máximo de um ator",
+                "name": "Caminho máximo de HP"
+            },
+            "resetPosition": {
+                "hint": "Redefinir a posição da Boss Bar para o padrão",
+                "name": "Redefinir posição"
+            },
+            "textAlign": {
+                "center": "Centro",
+                "left": "Esquerda",
+                "right": "Certo"
+            }
+        }
+    }
 }

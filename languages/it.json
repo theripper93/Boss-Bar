@@ -1,1 +1,65 @@
-
+{
+    "bossbar": {
+        "bar-style-configuration": {
+            "add": "Aggiungi stile",
+            "background": "Immagine di sfondo",
+            "bar": "Immagine della barra",
+            "barHeight": "Altezza della barra del boss",
+            "delete-confirm": "Sei sicuro di voler eliminare questo stile?",
+            "delete-title": "Elimina stile",
+            "edit": "Modifica stile",
+            "foreground": "Immagine in primo piano",
+            "tempBarAlpha": "Barra della salute temporanea Alpha",
+            "tempBarColor": "Colore temporaneo della barra della salute",
+            "textAlign": "Allinea testo",
+            "textSize": "Dimensione carattere",
+            "title": "Configurazione stile barra boss",
+            "type": "Tipo di stile",
+            "type-hint": "Seleziona il tipo di stile"
+        },
+        "boss-bar-configuration": {
+            "edit-themes": "Vicino",
+            "hideNameHint": "Nascondi il nome dell'attore nella barra del boss",
+            "no-actors": "Nessun attore selezionato o presente nella scena.",
+            "no-scene": "Nessuna scena disponibile. \nVisualizza una scena e riprova",
+            "save-pan": "Salva",
+            "title": "Configurazione della barra del boss"
+        },
+        "boss-bar": {
+            "title": "Barra del capo"
+        },
+        "controls": {
+            "bossUI": {
+                "name": "Attiva/disattiva la barra del boss",
+                "warn": "Nessun token selezionato. \nSeleziona uno o più token e riprova"
+            }
+        },
+        "settings": {
+            "BarStyleConfiguration": {
+                "label": "Configura stili",
+                "name": "Stili della barra del boss"
+            },
+            "barStyle": {
+                "classic": "Classico",
+                "matchingImages": "Immagini corrispondenti"
+            },
+            "currentHpPath": {
+                "hint": "Percorso dei dati per gli HP attuali di un attore",
+                "name": "Percorso HP attuale"
+            },
+            "maxHpPath": {
+                "hint": "Percorso dei dati fino ai CV massimi di un attore",
+                "name": "Percorso HP massimo"
+            },
+            "resetPosition": {
+                "hint": "Ripristina la posizione predefinita della barra del boss",
+                "name": "Ripristina posizione"
+            },
+            "textAlign": {
+                "center": "Centro",
+                "left": "Sinistra",
+                "right": "Giusto"
+            }
+        }
+    }
+}

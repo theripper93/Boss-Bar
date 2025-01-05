@@ -1,6 +1,7 @@
 import { BAR_STYLES, MODULE_ID } from "../main.js";
 import { getProperty, HandlebarsApplication, mergeClone } from "../lib/utils.js";
 import {DEFAULT_BAR_STYLE, getSetting, setSetting} from "../settings.js";
+import {BossBarConfiguration} from "./BossBarConfiguration.js";
 
 export function setBossBarHooks() {
     Hooks.on("updateScene", (scene, updates) => {
@@ -87,8 +88,11 @@ export class BossBar extends HandlebarsApplication {
 
     _onRender(context, options) {
         super._onRender(context, options);
-        const html = this.element;
         foundry.applications.instances.delete(this.APP_ID);
+        this.element.querySelector(".window-header").addEventListener("contextmenu", (event) => {
+            event.preventDefault();
+            new BossBarConfiguration().render(true);
+        } );
     }
 
     setPosition(...args) {

@@ -1,4 +1,4 @@
-import { BAR_STYLE_SELECT, MODULE_ID } from "../main.js";
+import { BAR_STYLE_SELECT, MODULE_ID, TEXT_ALIGN } from "../main.js";
 import { HandlebarsApplication, l } from "../lib/utils.js";
 import {DEFAULT_BAR_STYLE, getSetting, setSetting} from "../settings.js";
 import {mergeClone, confirm} from "../lib/utils.js";
@@ -68,12 +68,14 @@ export class BarStyleConfiguration extends HandlebarsApplication {
         const data = await new FormBuilder().title(l(`${MODULE_ID}.${this.APP_ID}.edit`) + `: ${style.name}`).object(style)
             .text({name: "name", label: "Name"})
             .file({name: "background", label: `${MODULE_ID}.${this.APP_ID}.background`})
+            .file({name: "bar", label: `${MODULE_ID}.${this.APP_ID}.bar`})
             .file({name: "foreground", label: `${MODULE_ID}.${this.APP_ID}.foreground`})
             .color({name: "tempBarColor", label: `${MODULE_ID}.${this.APP_ID}.tempBarColor`})
             .number({name: "tempBarAlpha", label: `${MODULE_ID}.${this.APP_ID}.tempBarAlpha`, min: 0, max: 1, step: 0.01})
             .number({name: "barHeight", label: `${MODULE_ID}.${this.APP_ID}.barHeight`, min: 5, max: 100, step: 1})
             .number({name: "textSize", label: `${MODULE_ID}.${this.APP_ID}.textSize`, min: 5, max: 100, step: 1})
-            .select({name: "type", label: `${MODULE_ID}.${this.APP_ID}.type`, hint: `${MODULE_ID}.${this.APP_ID}.type-hint`, options: Object.values(BAR_STYLE_SELECT)})
+            .select({name: "textAlign", label: `${MODULE_ID}.${this.APP_ID}.textAlign`, options: TEXT_ALIGN})
+            .select({name: "type", label: `${MODULE_ID}.${this.APP_ID}.type`, hint: `${MODULE_ID}.${this.APP_ID}.type-hint`, options: BAR_STYLE_SELECT})
             .render();
         if (!data) return;
         const styles = getSetting("barStyles");

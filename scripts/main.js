@@ -14,6 +14,12 @@ export const BAR_STYLE_SELECT = {
     1: "bossbar.settings.barStyle.matchingImages",
 };
 
+export const TEXT_ALIGN = {
+    "left": "bossbar.settings.textAlign.left",
+    "center": "bossbar.settings.textAlign.center",
+    "right": "bossbar.settings.textAlign.right",
+};
+
 Hooks.on("init", () => {
     initConfig();
     registerSettings();

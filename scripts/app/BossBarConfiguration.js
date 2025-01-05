@@ -1,8 +1,8 @@
 import { MODULE_ID } from "../main.js";
 import { HandlebarsApplication, l, mergeClone } from "../lib/utils.js";
-import {getSetting} from "../settings.js";
-import {Socket} from "../lib/socket.js";
-import {BarStyleConfiguration} from "./BarStyleConfiguration.js";
+import { getSetting } from "../settings.js";
+import { Socket } from "../lib/socket.js";
+import { BarStyleConfiguration } from "./BarStyleConfiguration.js";
 
 export class BossBarConfiguration extends HandlebarsApplication {
     constructor(scene) {
@@ -13,9 +13,9 @@ export class BossBarConfiguration extends HandlebarsApplication {
     }
 
     prepareActors() {
-        const actorsData = (this.scene.getFlag(MODULE_ID, "actors") ?? []).filter(a => fromUuidSync(a.uuid));
+        const actorsData = (this.scene.getFlag(MODULE_ID, "actors") ?? []).filter((a) => fromUuidSync(a.uuid));
         this.actors = JSON.parse(JSON.stringify(actorsData));
-        this.actors.forEach(a => {
+        this.actors.forEach((a) => {
             a.document = fromUuidSync(a.uuid);
         });
     }
@@ -44,7 +44,7 @@ export class BossBarConfiguration extends HandlebarsApplication {
                 height: "auto",
             },
         });
-    }   
+    }
 
     static get PARTS() {
         return {
@@ -57,20 +57,25 @@ export class BossBarConfiguration extends HandlebarsApplication {
     }
 
     async _prepareContext(options) {
-        const controlled = canvas?.tokens?.controlled?.map(t => t.actor) ?? [];
-        const actorOptions = (controlled.length ? controlled : this.scene.tokens.map(t => t.actor)).filter(a => !this.actors.find(ac => ac.document === a));
-        if(!actorOptions.length && !this.actors.length) return ui.notifications.error(`${MODULE_ID}.${this.APP_ID}.no-actors`);
+        const controlled = canvas?.tokens?.controlled?.map((t) => t.actor) ?? [];
+        let actorOptions = (controlled.length ? controlled : this.scene.tokens.map((t) => t.actor)).filter((a) => !this.actors.find((ac) => ac.document === a));
+        if (!actorOptions.length && !this.actors.length) return ui.notifications.error(`${MODULE_ID}.${this.APP_ID}.no-actors`);
         const barStyles = getSetting("barStyles");
         const barStyleOptions = barStyles.reduce((acc, style) => {
             acc[style.id] = style.name;
             return acc;
         }, {});
-        return {
-            actors: this.actors,
-            actorOptions: actorOptions.map(a => ({uuid: a.uuid, style: barStyles[0].id, document: a})),
-            barStyleOptions: barStyleOptions,
+        actorOptions = actorOptions.map((a) => ({ uuid: a.uuid, style: barStyles[0].id, document: a }));
+        if (!this.actors.length && actorOptions.length === 1) {
+            this.actors.push(actorOptions[0]);
+            actorOptions = [];
         }
 
+        return {
+            actors: this.actors,
+            actorOptions: actorOptions,
+            barStyleOptions: barStyleOptions,
+        };
     }
 
     _onRender(context, options) {
@@ -81,7 +86,7 @@ export class BossBarConfiguration extends HandlebarsApplication {
                 const li = event.currentTarget.closest("li");
                 const actor = li.dataset.uuid;
                 const style = li.querySelector("select").value;
-                this.actors.push({uuid: actor, style: style, document: fromUuidSync(actor)});
+                this.actors.push({ uuid: actor, style: style, document: fromUuidSync(actor) });
                 this.render();
             });
         });
@@ -89,7 +94,7 @@ export class BossBarConfiguration extends HandlebarsApplication {
             button.addEventListener("click", (event) => {
                 const li = event.currentTarget.closest("li");
                 const actor = li.dataset.uuid;
-                this.actors = this.actors.filter(a => a.uuid !== actor);
+                this.actors = this.actors.filter((a) => a.uuid !== actor);
                 this.render();
             });
         });
@@ -100,8 +105,8 @@ export class BossBarConfiguration extends HandlebarsApplication {
         html.querySelector("#save-pan").addEventListener("click", (event) => {
             this.saveData();
             this.close();
-            const token = this.actors.find(a => a.token);
-            Socket.cameraPan({uuid: token.uuid, scale: 1.8, duration: 1000});
+            const token = this.actors.find((a) => a.token);
+            Socket.cameraPan({ uuid: token.uuid, scale: 1.8, duration: 1000 });
         });
         html.querySelector("#edit-themes").addEventListener("click", (event) => {
             this.close();
@@ -110,7 +115,7 @@ export class BossBarConfiguration extends HandlebarsApplication {
     }
 
     saveData() {
-        const actors = this.actors.map(a => ({uuid: a.uuid, style: html.querySelector(`.selected-actors-list li[data-uuid="${a.uuid}"] select`).value}));
+        const actors = this.actors.map((a) => ({ uuid: a.uuid, style: this.element.querySelector(`.selected-actors-list li[data-uuid="${a.uuid}"] select`).value, hideName: this.element.querySelector(`.selected-actors-list li[data-uuid="${a.uuid}"] input[name="hideName"]`).checked }));
         return this.scene.setFlag(MODULE_ID, "actors", actors);
     }
 
@@ -121,7 +126,7 @@ export class BossBarConfiguration extends HandlebarsApplication {
     static async cleanUpActors(scene) {
         scene ??= game.scenes.viewed;
         const actors = scene.getFlag(MODULE_ID, "actors") ?? [];
-        const cleaned = actors.filter(a => fromUuidSync(a.uuid));
+        const cleaned = actors.filter((a) => fromUuidSync(a.uuid));
         if (cleaned.length !== actors.length) {
             return scene.setFlag(MODULE_ID, "actors", cleaned);
         }
