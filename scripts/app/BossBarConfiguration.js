@@ -2,6 +2,7 @@ import { MODULE_ID } from "../main.js";
 import { HandlebarsApplication, l, mergeClone } from "../lib/utils.js";
 import {getSetting} from "../settings.js";
 import {Socket} from "../lib/socket.js";
+import {BarStyleConfiguration} from "./BarStyleConfiguration.js";
 
 export class BossBarConfiguration extends HandlebarsApplication {
     constructor(scene) {
@@ -93,17 +94,24 @@ export class BossBarConfiguration extends HandlebarsApplication {
             });
         });
         html.querySelector("#save").addEventListener("click", (event) => {
-            const actors = this.actors.map(a => ({uuid: a.uuid, style: html.querySelector(`.selected-actors-list li[data-uuid="${a.uuid}"] select`).value}));
-            this.scene.setFlag(MODULE_ID, "actors", actors);
+            this.saveData();
             this.close();
         });
         html.querySelector("#save-pan").addEventListener("click", (event) => {
-            const actors = this.actors.map(a => ({uuid: a.uuid, style: a.style}));
-            this.scene.setFlag(MODULE_ID, "actors", actors);
+            this.saveData();
+            this.close();
             const token = this.actors.find(a => a.token);
             Socket.cameraPan({uuid: token.uuid, scale: 1.8, duration: 1000});
-            this.close();
         });
+        html.querySelector("#edit-themes").addEventListener("click", (event) => {
+            this.close();
+            new BarStyleConfiguration().render(true);
+        });
+    }
+
+    saveData() {
+        const actors = this.actors.map(a => ({uuid: a.uuid, style: html.querySelector(`.selected-actors-list li[data-uuid="${a.uuid}"] select`).value}));
+        return this.scene.setFlag(MODULE_ID, "actors", actors);
     }
 
     _onClose(options) {

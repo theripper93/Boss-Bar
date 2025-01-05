@@ -1,5 +1,5 @@
 import { initConfig } from "./config.js";
-import { registerSettings } from "./settings.js";
+import { registerSettings, setSetting } from "./settings.js";
 import {setBossBarHooks} from "./app/BossBar.js";
 
 export const MODULE_ID = "bossbar";

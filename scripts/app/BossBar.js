@@ -29,6 +29,12 @@ export class BossBar extends HandlebarsApplication {
         if (actors.length) return new BossBar(scene).render({position: getSetting("barPosition"), force: true});
     }
 
+    static resetPosition() {
+        setSetting("barPosition", {width: 560, height: "auto"});
+        setSetting("resetPosition", false);
+        BossBar.update();
+    }
+
     static get DEFAULT_OPTIONS() {
         const handlePosition = getSetting("handlePosition");
         return mergeClone(super.DEFAULT_OPTIONS, {

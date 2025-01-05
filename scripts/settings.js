@@ -17,13 +17,31 @@ export const DEFAULT_BAR_STYLE = {
     type: 0,
 };
 
+const PREDEFINED_BAR_STYLES = [
+    {
+        ...DEFAULT_BAR_STYLE,
+        id: "default-ice",
+        foreground: "modules/bossbar/resources/Ice.webp",
+    },
+    {
+        ...DEFAULT_BAR_STYLE,
+        id: "default-grass",
+        foreground: "modules/bossbar/resources/Grass.webp",
+    },
+    {
+        ...DEFAULT_BAR_STYLE,
+        id: "default-oak",
+        foreground: "modules/bossbar/resources/Oak.webp",
+    }
+]
+
 export function registerSettings() {
     const settings = {
         barStyles: {
             scope: "world",
             config: false,
             type: Array,
-            default: [{ ...DEFAULT_BAR_STYLE }],
+            default: [{ ...DEFAULT_BAR_STYLE }, ...PREDEFINED_BAR_STYLES],
             onChange: () => BossBar.update(),
         },
 
@@ -42,6 +60,16 @@ export function registerSettings() {
                 bottom: `${MODULE_ID}.settings.handlePosition.bottom`,
                 top: `${MODULE_ID}.settings.handlePosition.top`,
             },
+        },
+
+        resetPosition: {
+            scope: "client",
+            config: true,
+            type: Boolean,
+            default: false,
+            onChange: (value) => {
+                if (value) BossBar.resetPosition();
+            }
         },
 
         currentHpPath: {

@@ -20,12 +20,18 @@
                 "hint": "Data path to the max hp of an actor"
             },
             "handlePosition": {
+                "name": "Handle Position",
+                "hint": "Position of the Boss Bar draggable handle",
                 "bottom": "Bottom",
                 "top": "Top"
             },
             "BarStyleConfiguration": {
                 "name": "Boss Bar Styles",
                 "label": "Configure Styles"
+            },
+            "resetPosition": {
+                "name": "Reset Position",
+                "hint": "Reset the position of the Boss Bar to the default"
             }
         },
         "bar-style-configuration": {
@@ -47,7 +53,8 @@
             "title": "Boss Bar Configuration",
             "no-actors": "No actors selected or present in the scene.",
             "no-scene": "No scene available. Please view a scene and try again",
-            "save-pan": "Save & Pan Camera"
+            "save-pan": "Save & Pan Camera",
+            "edit-themes": "Close & Edit Themes"
         },
         "boss-bar": {
             "title": "Boss Bar"

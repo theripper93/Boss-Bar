@@ -71,8 +71,6 @@
             width: 100%;
             position: relative;
 
-            background-color: magenta;
-
             .inner {
                 position: absolute;
                 width: var(--bar-container-outer-width);
@@ -80,6 +78,8 @@
                 max-width: var(--bar-container-outer-width);
                 height: 100%;
             }
+
+            border: 1px solid black;
 
 
             .bar-component {
@@ -93,6 +93,7 @@
                 &.bar-foreground {
                     transition: width 4s;
                     width: var(--bar-percent);
+                    border-right: 1px solid black;
                 }
 
                 &.bar-background {}
