@@ -168,16 +168,6 @@ export class BossBar {
         canvas.scene._bossBars[bossBar.id] = bossBar;
     }
 
-    static cameraPan({tokenId, scale, duration}) {
-        const token = canvas.tokens.get(tokenId);
-        canvas.animatePan({
-            x: token.center.x,
-            y: token.center.y,
-            scale: scale,
-            duration: duration,
-        });
-    }
-
     static panCamera(token, scale = 1.8, duration = 1000) {
         Socket.cameraPan({tokenId: token.id, scale: scale, duration: duration});
     }

@@ -1,6 +1,7 @@
 import { MODULE_ID } from "../main.js";
 import { HandlebarsApplication, l, mergeClone } from "../lib/utils.js";
 import {getSetting} from "../settings.js";
+import {Socket} from "../lib/socket.js";
 
 export class BossBarConfiguration extends HandlebarsApplication {
     constructor(scene) {
@@ -63,13 +64,11 @@ export class BossBarConfiguration extends HandlebarsApplication {
             acc[style.id] = style.name;
             return acc;
         }, {});
-        const data = {
+        return {
             actors: this.actors,
             actorOptions: actorOptions.map(a => ({uuid: a.uuid, style: barStyles[0].id, document: a})),
             barStyleOptions: barStyleOptions,
         }
-        console.log(data);
-        return data
 
     }
 
@@ -96,6 +95,13 @@ export class BossBarConfiguration extends HandlebarsApplication {
         html.querySelector("#save").addEventListener("click", (event) => {
             const actors = this.actors.map(a => ({uuid: a.uuid, style: a.style}));
             this.scene.setFlag(MODULE_ID, "actors", actors);
+            this.close();
+        });
+        html.querySelector("#save-pan").addEventListener("click", (event) => {
+            const actors = this.actors.map(a => ({uuid: a.uuid, style: a.style}));
+            this.scene.setFlag(MODULE_ID, "actors", actors);
+            const token = this.actors.find(a => a.token);
+            Socket.cameraPan({uuid: token.uuid, scale: 1.8, duration: 1000});
             this.close();
         });
     }

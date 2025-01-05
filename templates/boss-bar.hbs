@@ -1,0 +1,22 @@
+<div>
+    <ul>
+        {{#each bars as |bar|}}
+        <li class="flexcol bar-list-item" data-uuid="{{bar.actor.uuid}}" style="--bar-font-size:{{bar.style.textSize}}px;--bar-percent: {{bar.hpPercent}}%;">
+            {{#if bar.name}}
+            <div class="bar-name">{{bar.name}}</div>
+            {{/if}}
+            <div class="boss-bar-container {{bar.cssClass}}" style="--bar-height:{{bar.style.barHeight}}px; --bar-temp-color:{{bar.style.tempBarColor}}; --bar-temp-alpha:{{bar.style.tempBarAlpha}};">
+            {{#if bar.isClassic}}
+                <div class="bar-component bar-background" style="background-image:url('{{bar.style.background}}');"></div>
+                <div class="bar-component bar-temp">
+                    <div class="inner"></div>
+                </div>
+                <div class="bar-component bar-foreground" >
+                    <div class="inner" style="background-image:url('{{bar.style.foreground}}');"></div>
+                </div>
+            {{/if}}
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</div>

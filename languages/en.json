@@ -66,7 +66,11 @@
         "boss-bar-configuration": {
             "title": "Boss Bar Configuration",
             "no-actors": "No actors selected or present in the scene.",
-            "no-scene": "No scene available. Please view a scene and try again"
+            "no-scene": "No scene available. Please view a scene and try again",
+            "save-pan": "Save & Pan Camera"
+        },
+        "boss-bar": {
+            "title": "Boss Bar"
         }
     }
 }

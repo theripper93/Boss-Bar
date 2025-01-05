@@ -1,0 +1,92 @@
+#boss-bar {
+
+    &:not(:hover) {
+
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+
+        .window-content{
+            backdrop-filter: none;
+        }
+
+        .window-header{
+            opacity: 0;
+        }
+    }
+
+    border-radius: 0;
+
+    .window-content,
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    --bar-container-outer-width: 0px;
+
+    .bar-list-item {
+        --bar-font-size: 20px;
+        --bar-percent: 0%;
+
+        .bar-name {
+            font-size: var(--bar-font-size);
+            text-align: left;
+            color: white;
+            filter: drop-shadow(0 0 0.2rem black);
+            font-family: "Times New Roman", Times, serif;
+            padding: 3px;
+        }
+
+        .boss-bar-container {
+            --bar-height: 20px;
+            --bar-temp-color: #7e7e7e;
+            --bar-temp-alpha: 0.5;
+            height: var(--bar-height);
+            max-height: var(--bar-height);
+            min-height: var(--bar-height);
+            width: 100%;
+            position: relative;
+
+            background-color: magenta;
+
+            .inner{
+                position: absolute;
+                width: var(--bar-container-outer-width);
+                min-width: var(--bar-container-outer-width);
+                max-width: var(--bar-container-outer-width);
+                height: 100%;
+            }
+
+
+            .bar-component {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-repeat: repeat;
+                background-position: center;
+                overflow: hidden;
+
+                &.bar-foreground {
+                    transition: width 4s;
+                    width: var(--bar-percent);
+                }
+
+                &.bar-background {}
+
+                &.bar-temp {
+                    transition: width 1s;
+                    transition-delay: 3s;
+                    width: var(--bar-percent);
+                    .inner{
+                        background-color: var(--bar-temp-color);
+                        opacity: var(--bar-temp-alpha);
+                    }
+                }
+            }
+
+        }
+
+
+    }
+}
