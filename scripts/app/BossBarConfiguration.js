@@ -105,8 +105,8 @@ export class BossBarConfiguration extends HandlebarsApplication {
         html.querySelector("#save-pan").addEventListener("click", (event) => {
             this.saveData();
             this.close();
-            const token = this.actors.find((a) => a.token);
-            Socket.cameraPan({ uuid: token.uuid, scale: 1.8, duration: 1000 });
+            const tokenActor = this.actors.find((a) => a.document.token)
+            Socket.cameraPan({ uuid: tokenActor.document.token.uuid, scale: 1.8, duration: 1000 });
         });
         html.querySelector("#edit-themes").addEventListener("click", (event) => {
             this.close();
@@ -115,7 +115,7 @@ export class BossBarConfiguration extends HandlebarsApplication {
     }
 
     saveData() {
-        const actors = this.actors.map((a) => ({ uuid: a.uuid, style: this.element.querySelector(`.selected-actors-list li[data-uuid="${a.uuid}"] select`).value, hideName: this.element.querySelector(`.selected-actors-list li[data-uuid="${a.uuid}"] input[name="hideName"]`).checked }));
+        const actors = this.actors.map((a) => ({ uuid: a.document.uuid, style: this.element.querySelector(`.selected-actors-list li[data-uuid="${a.document.uuid}"] select`).value, hideName: this.element.querySelector(`.selected-actors-list li[data-uuid="${a.document.uuid}"] input[name="hideName"]`).checked }));
         return this.scene.setFlag(MODULE_ID, "actors", actors);
     }
 

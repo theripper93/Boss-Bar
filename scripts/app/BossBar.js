@@ -37,9 +37,8 @@ export class BossBar extends HandlebarsApplication {
     }
 
     static get DEFAULT_OPTIONS() {
-        const handlePosition = getSetting("handlePosition");
         return mergeClone(super.DEFAULT_OPTIONS, {
-            classes: [this.APP_ID, handlePosition ? `window-header-${handlePosition}` : ""],
+            classes: [this.APP_ID],
             id: this.APP_ID,
             window: {
                 title: `${MODULE_ID}.${this.APP_ID}.title`,

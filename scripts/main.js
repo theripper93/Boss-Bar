@@ -1,6 +1,7 @@
 import { initConfig } from "./config.js";
 import { registerSettings, setSetting } from "./settings.js";
 import {setBossBarHooks} from "./app/BossBar.js";
+import {Socket} from "./lib/socket.js";
 
 export const MODULE_ID = "bossbar";
 
@@ -24,4 +25,14 @@ Hooks.on("init", () => {
     initConfig();
     registerSettings();
     setBossBarHooks();
+
+    Socket.register("cameraPan", ({ uuid, scale, duration }) => {
+        const token = fromUuidSync(uuid);
+        if (token.parent !== canvas?.scene) return;
+        canvas.animatePan({
+            ...token.object.center,
+            scale: scale,
+            duration: duration,
+        });
+    });
 });
