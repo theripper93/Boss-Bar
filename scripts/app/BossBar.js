@@ -1,6 +1,6 @@
 import { BAR_STYLES, MODULE_ID } from "../main.js";
 import { getProperty, HandlebarsApplication, mergeClone } from "../lib/utils.js";
-import {DEFAULT_BAR_STYLE, getSetting} from "../settings.js";
+import {DEFAULT_BAR_STYLE, getSetting, setSetting} from "../settings.js";
 
 export function setBossBarHooks() {
     Hooks.on("updateScene", (scene, updates) => {
@@ -18,6 +18,7 @@ export class BossBar extends HandlebarsApplication {
         if (ui.bossBar) ui.bossBar.close();
         ui.bossBar = this;
         this.scene = scene ?? game.scenes.viewed;
+        this.savePosition = foundry.utils.debounce(this.savePosition.bind(this), 100);
     }
 
     static update() {
@@ -25,12 +26,13 @@ export class BossBar extends HandlebarsApplication {
         const scene = game.scenes.viewed;
         const actors = scene.getFlag(MODULE_ID, "actors") ?? [];
         if (!actors.length && current) return current.close();
-        if (actors.length) return new BossBar(scene).render(true);
+        if (actors.length) return new BossBar(scene).render({position: getSetting("barPosition"), force: true});
     }
 
     static get DEFAULT_OPTIONS() {
+        const handlePosition = getSetting("handlePosition");
         return mergeClone(super.DEFAULT_OPTIONS, {
-            classes: [this.APP_ID],
+            classes: [this.APP_ID, handlePosition ? `window-header-${handlePosition}` : ""],
             id: this.APP_ID,
             window: {
                 title: `${MODULE_ID}.${this.APP_ID}.title`,
@@ -80,13 +82,19 @@ export class BossBar extends HandlebarsApplication {
     _onRender(context, options) {
         super._onRender(context, options);
         const html = this.element;
+        foundry.applications.instances.delete(this.APP_ID);
     }
 
     setPosition(...args) {
         const r = super.setPosition(...args);
         const barContainerOuterWidth = this.element.querySelector(".bar-list-item").offsetWidth;
         this.element.style.setProperty("--bar-container-outer-width", `${barContainerOuterWidth}px`);
+        this.savePosition(this.position);
         return r;
+    }
+
+    savePosition(position) {
+        setSetting("barPosition", {width: position.width, left: position.left, top: position.top});
     }
 
     _onClose(options) {

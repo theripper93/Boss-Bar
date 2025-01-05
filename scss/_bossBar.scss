@@ -1,16 +1,39 @@
 #boss-bar {
 
+    &.window-header-bottom {
+        .window-header {
+            order: 10;
+        }
+        .window-resize-handle {
+            z-index: 1000;
+        }
+    }
+
+    .window-header{
+        max-height: 20px;
+        h1{
+            line-height: normal;
+        }
+        button{
+            display: none;
+        }
+    }
+
     &:not(:hover) {
 
         background: transparent;
         border-color: transparent;
         box-shadow: none;
 
-        .window-content{
+        .window-content {
             backdrop-filter: none;
         }
 
-        .window-header{
+        .window-header {
+            opacity: 0;
+        }
+
+        .window-resize-handle {
             opacity: 0;
         }
     }
@@ -50,7 +73,7 @@
 
             background-color: magenta;
 
-            .inner{
+            .inner {
                 position: absolute;
                 width: var(--bar-container-outer-width);
                 min-width: var(--bar-container-outer-width);
@@ -78,7 +101,8 @@
                     transition: width 1s;
                     transition-delay: 3s;
                     width: var(--bar-percent);
-                    .inner{
+
+                    .inner {
                         background-color: var(--bar-temp-color);
                         opacity: var(--bar-temp-alpha);
                     }

@@ -15,6 +15,21 @@
   border-radius: 0;
   --bar-container-outer-width: 0px;
 }
+#boss-bar.window-header-bottom .window-header {
+  order: 10;
+}
+#boss-bar.window-header-bottom .window-resize-handle {
+  z-index: 1000;
+}
+#boss-bar .window-header {
+  max-height: 20px;
+}
+#boss-bar .window-header h1 {
+  line-height: normal;
+}
+#boss-bar .window-header button {
+  display: none;
+}
 #boss-bar:not(:hover) {
   background: transparent;
   border-color: transparent;
@@ -24,6 +39,9 @@
   backdrop-filter: none;
 }
 #boss-bar:not(:hover) .window-header {
+  opacity: 0;
+}
+#boss-bar:not(:hover) .window-resize-handle {
   opacity: 0;
 }
 #boss-bar .window-content,

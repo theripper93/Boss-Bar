@@ -93,7 +93,7 @@ export class BossBarConfiguration extends HandlebarsApplication {
             });
         });
         html.querySelector("#save").addEventListener("click", (event) => {
-            const actors = this.actors.map(a => ({uuid: a.uuid, style: a.style}));
+            const actors = this.actors.map(a => ({uuid: a.uuid, style: html.querySelector(`.selected-actors-list li[data-uuid="${a.uuid}"] select`).value}));
             this.scene.setFlag(MODULE_ID, "actors", actors);
             this.close();
         });

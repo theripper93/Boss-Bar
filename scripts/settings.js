@@ -1,5 +1,6 @@
-import {BarStyleConfiguration} from "./app/BarStyleConfiguration.js";
-import {BAR_STYLES, MODULE_ID} from "./main.js";
+import { BarStyleConfiguration } from "./app/BarStyleConfiguration.js";
+import { BossBar } from "./app/BossBar.js";
+import { BAR_STYLES, MODULE_ID } from "./main.js";
 
 const SETTING_CACHE = {};
 const DEFAULT_CACHE = false;
@@ -14,7 +15,7 @@ export const DEFAULT_BAR_STYLE = {
     barHeight: 20,
     textSize: 20,
     type: 0,
-}
+};
 
 export function registerSettings() {
     const settings = {
@@ -22,9 +23,26 @@ export function registerSettings() {
             scope: "world",
             config: false,
             type: Array,
-            default: [{...DEFAULT_BAR_STYLE}],
+            default: [{ ...DEFAULT_BAR_STYLE }],
+            onChange: () => BossBar.update(),
         },
 
+        barPosition: {
+            scope: "client",
+            type: Object,
+            default: {},
+        },
+
+        handlePosition: {
+            scope: "client",
+            config: true,
+            type: String,
+            default: "bottom",
+            choices: {
+                bottom: `${MODULE_ID}.settings.handlePosition.bottom`,
+                top: `${MODULE_ID}.settings.handlePosition.top`,
+            },
+        },
 
         currentHpPath: {
             scope: "world",
@@ -38,54 +56,6 @@ export function registerSettings() {
             type: String,
             default: "attributes.hp.max",
         },
-        barHeight: {
-            scope: "world",
-            config: true,
-            type: Number,
-            default: 20,
-        },
-        textSize: {
-            scope: "world",
-            config: true,
-            type: Number,
-            default: 20,
-        },
-        cameraPan: {
-            scope: "world",
-            config: true,
-            type: Boolean,
-            default: false,
-        },
-        position: {
-            scope: "world",
-            config: true,
-            type: Number,
-            choices: {
-                0: game.i18n.localize("bossbar.settings.position.opt0"),
-                1: game.i18n.localize("bossbar.settings.position.opt1"),
-            },
-            default: 0,
-        },
-        backgroundPath: {
-            scope: "world",
-            config: true,
-            type: String,
-            default: "modules/bossbar/resources/Dark.webp",
-            filePicker: true,
-        },
-        foregroundPath: {
-            scope: "world",
-            config: true,
-            type: String,
-            default: "modules/bossbar/resources/Blood.webp",
-            filePicker: true,
-        },
-        tempBarColor: {
-            scope: "world",
-            config: true,
-            type: String,
-            default: "#7e7e7e",
-        },
     };
 
     registerSettingsArray(settings);
@@ -96,9 +66,8 @@ export function registerSettings() {
         icon: "fas fa-paint-brush",
         type: BarStyleConfiguration,
         restricted: true,
-    })
+    });
 }
-
 
 export function getSetting(key) {
     return SETTING_CACHE[key] ?? game.settings.get(MODULE_ID, key);
@@ -110,17 +79,18 @@ export async function setSetting(key, value) {
 
 function registerSettingsArray(settings) {
     for (const [key, value] of Object.entries(settings)) {
-        if (!value.name) value.name = `${MODULE_ID}.settings.${key}.name`
-        if (!value.hint) value.hint = `${MODULE_ID}.settings.${key}.hint`
+        if (!value.name) value.name = `${MODULE_ID}.settings.${key}.name`;
+        if (!value.hint) value.hint = `${MODULE_ID}.settings.${key}.hint`;
         if (value.useCache === undefined) value.useCache = DEFAULT_CACHE;
         if (value.useCache) {
             const unwrappedOnChange = value.onChange;
-            if (value.onChange) value.onChange = (value) => {
-                SETTING_CACHE[key] = value;
-                if (unwrappedOnChange) unwrappedOnChange(value);
-            }
+            if (value.onChange)
+                value.onChange = (value) => {
+                    SETTING_CACHE[key] = value;
+                    if (unwrappedOnChange) unwrappedOnChange(value);
+                };
         }
         game.settings.register(MODULE_ID, key, value);
-        if(value.useCache) SETTING_CACHE[key] = getSetting(key);
+        if (value.useCache) SETTING_CACHE[key] = getSetting(key);
     }
 }

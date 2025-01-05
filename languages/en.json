@@ -19,29 +19,9 @@
                 "name": "Max HP Path",
                 "hint": "Data path to the max hp of an actor"
             },
-            "barHeight": {
-                "name": "Boss Bar Height",
-                "hint": "Height of the boss bar in pixels"
-            },
-            "backgroundPath": {
-                "name": "Background Image",
-                "hint": "Image to be placed as the healthbar background"
-            },
-            "foregroundPath": {
-                "name": "Foreground Image",
-                "hint": "Image to be palced as the healthbar foreground, this image will be resized depending on hp %"
-            },
-            "textSize": {
-                "name": "Font Size",
-                "hint": "Font Size in pixels"
-            },
-            "cameraPan": {
-                "name": "Pan Camera to Boss when creating the health bars",
-                "hint": "When enabling the healthbars pan the camera to the token. When selecting multiple tokens the last one will be the one the camera pans to"
-            },
-            "tempBarColor": {
-                "name": "Temporary healthbar color",
-                "hint": "Set color for the temporary healthbar that shows when damage is taken"
+            "handlePosition": {
+                "bottom": "Bottom",
+                "top": "Top"
             },
             "BarStyleConfiguration": {
                 "name": "Boss Bar Styles",
