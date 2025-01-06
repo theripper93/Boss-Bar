@@ -1,0 +1,65 @@
+{
+    "bossbar": {
+        "bar-style-configuration": {
+            "add": "Adicionar estilo",
+            "background": "Imagem de fundo",
+            "bar": "Imagem da barra",
+            "barHeight": "Altura da barra principal",
+            "delete-confirm": "Tem certeza de que deseja excluir este estilo?",
+            "delete-title": "Excluir estilo",
+            "edit": "Editar estilo",
+            "foreground": "Imagem de primeiro plano",
+            "tempBarAlpha": "Barra de Saúde Alfa Temporária",
+            "tempBarColor": "Cor temporária da barra de saúde",
+            "textAlign": "Alinhamento de texto",
+            "textSize": "Tamanho da fonte",
+            "title": "Configuração de estilo de barra principal",
+            "type": "Tipo de estilo",
+            "type-hint": "Selecione o tipo de estilo"
+        },
+        "boss-bar-configuration": {
+            "edit-themes": "Fechar",
+            "hideNameHint": "Esconda o nome do ator no Boss Bar",
+            "no-actors": "Nenhum ator selecionado ou presente na cena.",
+            "no-scene": "Nenhuma cena disponível. \nPor favor, veja uma cena e tente novamente",
+            "save-pan": "Salvar",
+            "title": "Configuração da barra principal"
+        },
+        "boss-bar": {
+            "title": "Barra do Chefe"
+        },
+        "controls": {
+            "bossUI": {
+                "name": "Alternar barra de chefe",
+                "warn": "Nenhum token selecionado. \nSelecione um ou vários tokens e tente novamente"
+            }
+        },
+        "settings": {
+            "BarStyleConfiguration": {
+                "label": "Configurar estilos",
+                "name": "Estilos de Boss Bar"
+            },
+            "barStyle": {
+                "classic": "Clássico",
+                "matchingImages": "Imagens correspondentes"
+            },
+            "currentHpPath": {
+                "hint": "Caminho de dados para o HP atual de um ator",
+                "name": "Caminho atual da HP"
+            },
+            "maxHpPath": {
+                "hint": "Caminho de dados para o HP máximo de um ator",
+                "name": "Caminho máximo de HP"
+            },
+            "resetPosition": {
+                "hint": "Redefinir a posição da Boss Bar para o padrão",
+                "name": "Redefinir posição"
+            },
+            "textAlign": {
+                "center": "Centro",
+                "left": "Esquerda",
+                "right": "Certo"
+            }
+        }
+    }
+}
