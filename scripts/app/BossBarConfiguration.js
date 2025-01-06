@@ -50,7 +50,7 @@ export class BossBarConfiguration extends HandlebarsApplication {
         return {
             content: {
                 template: `modules/${MODULE_ID}/templates/${this.APP_ID}.hbs`,
-                classes: ["standard-form"],
+                classes: ["standard-form", "scrollable"],
                 scrollable: [""],
             },
         };
@@ -66,7 +66,7 @@ export class BossBarConfiguration extends HandlebarsApplication {
             return acc;
         }, {});
         actorOptions = actorOptions.map((a) => ({ uuid: a.uuid, style: barStyles[0].id, document: a }));
-        if (!this.actors.length && actorOptions.length === 1) {
+        if (!this.actors.length && actorOptions.length === 1 && (this.scene.getFlag(MODULE_ID, "actors") ?? []).length === 0) {
             this.actors.push(actorOptions[0]);
             actorOptions = [];
         }
