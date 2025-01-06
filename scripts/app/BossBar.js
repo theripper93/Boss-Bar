@@ -31,7 +31,7 @@ export class BossBar extends HandlebarsApplication {
     }
 
     static resetPosition() {
-        setSetting("barPosition", {width: 560, height: "auto"});
+        setSetting("barPosition", {width: BossBar.defaultWidth, height: "auto", top: 50, left: BossBar.defaultLeft});
         setSetting("resetPosition", false);
         BossBar.update();
     }
@@ -46,10 +46,24 @@ export class BossBar extends HandlebarsApplication {
                 resizable: true,
             },
             position: {
-                width: 560,
+                width: this.defaultWidth,
                 height: "auto",
+                top: 50,
+                left: this.defaultLeft,
             },
         });
+    }
+
+    static get defaultSizeMulti() {
+        return 0.8;
+    }
+
+    static get defaultWidth() {
+        return document.querySelector("#ui-top").offsetWidth * this.defaultSizeMulti;
+    }
+
+    static get defaultLeft() {
+        return document.querySelector("#ui-top").getBoundingClientRect().left + (document.querySelector("#ui-top").offsetWidth * (1 - this.defaultSizeMulti)) / 2;
     }
 
     static get PARTS() {
