@@ -96,7 +96,7 @@ export class BossBar extends HandlebarsApplication {
 
     setPosition(...args) {
         const r = super.setPosition(...args);
-        const barContainerOuterWidth = this.element.querySelector(".bar-list-item").offsetWidth;
+        const barContainerOuterWidth = this.element.querySelector(".boss-bar-container").offsetWidth;
         this.element.style.setProperty("--bar-container-outer-width", `${barContainerOuterWidth}px`);
         this.savePosition(this.position);
         return r;

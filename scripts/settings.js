@@ -22,19 +22,76 @@ export const DEFAULT_BAR_STYLE = {
 const PREDEFINED_BAR_STYLES = [
     {
         ...DEFAULT_BAR_STYLE,
+        name: "Classic - Ice",
         id: "default-ice",
         bar: "modules/bossbar/resources/Ice.webp",
     },
     {
         ...DEFAULT_BAR_STYLE,
+        name: "Classic - Grass",
         id: "default-grass",
         bar: "modules/bossbar/resources/Grass.webp",
     },
     {
         ...DEFAULT_BAR_STYLE,
+        name: "Classic - Oak",
         id: "default-oak",
         bar: "modules/bossbar/resources/Oak.webp",
-    }
+    },
+    {
+        ...DEFAULT_BAR_STYLE,
+        name: "Evil",
+        id: "evil",
+        foreground: "modules/bossbar/resources/matching-images/evil/fg.png",
+        bar: "modules/bossbar/resources/matching-images/evil/bar.png",
+        background: "modules/bossbar/resources/matching-images/evil/bg.png",
+        type: 1,
+    },
+    {
+        ...DEFAULT_BAR_STYLE,
+        name: "Gears",
+        id: "gears",
+        foreground: "modules/bossbar/resources/matching-images/gears/fg.webp",
+        bar: "modules/bossbar/resources/matching-images/gears/bar.webp",
+        background: "modules/bossbar/resources/matching-images/gears/bg.webp",
+        type: 1,
+    },
+    {
+        ...DEFAULT_BAR_STYLE,
+        name: "Ooze",
+        id: "ooze",
+        foreground: "modules/bossbar/resources/matching-images/ooze/fg.webp",
+        bar: "modules/bossbar/resources/matching-images/ooze/bar.webp",
+        background: "modules/bossbar/resources/matching-images/ooze/bg.webp",
+        type: 1,
+    },
+    {
+        ...DEFAULT_BAR_STYLE,
+        name: "Royal",
+        id: "royal",
+        foreground: "modules/bossbar/resources/matching-images/royal/fg.png",
+        bar: "modules/bossbar/resources/matching-images/royal/bar.png",
+        background: "modules/bossbar/resources/matching-images/royal/bg.png",
+        type: 1,
+    },
+    {
+        ...DEFAULT_BAR_STYLE,
+        name: "Segmented",
+        id: "segmented",
+        foreground: "modules/bossbar/resources/matching-images/segmented/fg.png",
+        bar: "modules/bossbar/resources/matching-images/segmented/bar.png",
+        background: "modules/bossbar/resources/matching-images/segmented/bg.png",
+        type: 1,
+    },
+    {
+        ...DEFAULT_BAR_STYLE,
+        name: "Steampunk",
+        id: "steampunk",
+        foreground: "modules/bossbar/resources/matching-images/steampunk/fg.png",
+        bar: "modules/bossbar/resources/matching-images/steampunk/bar.png",
+        background: "modules/bossbar/resources/matching-images/steampunk/bg.png",
+        type: 1,
+    },
 ]
 
 export function registerSettings() {

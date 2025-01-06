@@ -116,6 +116,10 @@
 
             img{
                 border: none;
+
+                    width: var(--bar-container-outer-width);
+                    min-width: var(--bar-container-outer-width);
+                    max-width: var(--bar-container-outer-width);
             }
 
             .bar-component{
@@ -139,12 +143,6 @@
                     width: var(--bar-percent);
                     height: 100%;
                     overflow: hidden;
-
-                    img{
-                        width: var(--bar-container-outer-width);
-                        min-width: var(--bar-container-outer-width);
-                        max-width: var(--bar-container-outer-width);
-                    }
                 }
             }
         }

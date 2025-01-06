@@ -108,6 +108,9 @@
 }
 #boss-bar .bar-list-item .boss-bar-container.matching-images img {
   border: none;
+  width: var(--bar-container-outer-width);
+  min-width: var(--bar-container-outer-width);
+  max-width: var(--bar-container-outer-width);
 }
 #boss-bar .bar-list-item .boss-bar-container.matching-images .bar-component {
   position: absolute;
@@ -127,9 +130,4 @@
   width: var(--bar-percent);
   height: 100%;
   overflow: hidden;
-}
-#boss-bar .bar-list-item .boss-bar-container.matching-images .bar-component.bar-bar img {
-  width: var(--bar-container-outer-width);
-  min-width: var(--bar-container-outer-width);
-  max-width: var(--bar-container-outer-width);
 }/*# sourceMappingURL=module.css.map */
