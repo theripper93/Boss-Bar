@@ -63,8 +63,9 @@ export class BarStyleConfiguration extends HandlebarsApplication {
 
 
     async _onEdit(id) {
-        const style = getSetting("barStyles").find((style) => style.id === id);
-        if (!style) return;
+        const settingStyle = getSetting("barStyles").find((style) => style.id === id);
+        if (!settingStyle) return;
+        const style = mergeClone(DEFAULT_BAR_STYLE, settingStyle);
         const data = await new FormBuilder().title(l(`${MODULE_ID}.${this.APP_ID}.edit`) + `: ${style.name}`).object(style)
             .text({name: "name", label: "Name"})
             .file({name: "background", label: `${MODULE_ID}.${this.APP_ID}.background`})
@@ -73,6 +74,7 @@ export class BarStyleConfiguration extends HandlebarsApplication {
             .color({name: "tempBarColor", label: `${MODULE_ID}.${this.APP_ID}.tempBarColor`})
             .number({name: "tempBarAlpha", label: `${MODULE_ID}.${this.APP_ID}.tempBarAlpha`, min: 0, max: 1, step: 0.01})
             .number({name: "barHeight", label: `${MODULE_ID}.${this.APP_ID}.barHeight`, min: 5, max: 100, step: 1})
+            .select({name: "font", label: `${MODULE_ID}.${this.APP_ID}.font`, options: FontConfig.getAvailableFontChoices()})
             .number({name: "textSize", label: `${MODULE_ID}.${this.APP_ID}.textSize`, min: 5, max: 100, step: 1})
             .select({name: "textAlign", label: `${MODULE_ID}.${this.APP_ID}.textAlign`, options: TEXT_ALIGN})
             .select({name: "type", label: `${MODULE_ID}.${this.APP_ID}.type`, hint: `${MODULE_ID}.${this.APP_ID}.type-hint`, options: BAR_STYLE_SELECT})

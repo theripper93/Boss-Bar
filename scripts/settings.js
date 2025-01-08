@@ -17,6 +17,7 @@ export const DEFAULT_BAR_STYLE = {
     textSize: 20,
     textAlign: "left",
     type: 0,
+    font: "Times New Roman",
 };
 
 const PREDEFINED_BAR_STYLES = [

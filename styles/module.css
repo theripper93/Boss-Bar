@@ -52,6 +52,7 @@
 #boss-bar .bar-list-item {
   --bar-font-size: 20px;
   --bar-percent: 0%;
+  --bar-font-family: "Times New Roman";
   padding: 0 8px;
 }
 #boss-bar .bar-list-item .bar-name {
@@ -59,7 +60,7 @@
   text-align: left;
   color: white;
   filter: drop-shadow(0 0 0.2rem black);
-  font-family: "Times New Roman", Times, serif;
+  font-family: var(--bar-font-family, "Times New Roman"), Times, serif;
   padding: 3px;
 }
 #boss-bar .bar-list-item .boss-bar-container.classic {

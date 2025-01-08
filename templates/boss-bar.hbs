@@ -1,7 +1,7 @@
 <div>
     <ul>
         {{#each bars as |bar|}}
-        <li class="flexcol bar-list-item" data-uuid="{{bar.actor.uuid}}" style="--bar-font-size:{{bar.style.textSize}}px;--bar-percent: {{bar.hpPercent}}%;">
+        <li class="flexcol bar-list-item" data-uuid="{{bar.actor.uuid}}" style="--bar-font-size:{{bar.style.textSize}}px;--bar-percent: {{bar.hpPercent}}%; --bar-font-family: {{bar.style.font}};">
             {{#if bar.name}}
             <div class="bar-name" style="text-align: {{bar.style.textAlign}};">{{bar.name}}</div>
             {{/if}}
