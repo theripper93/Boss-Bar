@@ -133,6 +133,12 @@ export function registerSettings() {
             type: String,
             default: "attributes.hp.max",
         },
+        woundsSystem: {
+            scope: "world",
+            config: true,
+            type: Boolean,
+            default: false,
+        },
     };
 
     registerSettingsArray(settings);

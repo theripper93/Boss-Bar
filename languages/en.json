@@ -31,6 +31,10 @@
                 "left": "Left",
                 "center": "Center",
                 "right": "Right"
+            },
+            "woundsSystem": {
+                "name": "Wounds System",
+                "hint": "If your system uses wounds instead of hit points, enable this option."
             }
         },
         "bar-style-configuration": {
@@ -45,6 +49,7 @@
             "tempBarColor": "Temporary Healthbar Color",
             "tempBarAlpha": "Temporary Healthbar Alpha",
             "barHeight": "Boss Bar Height",
+            "font": "Font Family",
             "textSize": "Font Size",
             "textAlign": "Text Align",
             "type": "Style Type",

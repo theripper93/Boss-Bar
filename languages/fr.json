@@ -15,7 +15,8 @@
             "textSize": "Taille de la police",
             "title": "Configuration du style de barre de boss",
             "type": "Type de style",
-            "type-hint": "Sélectionnez le type de style"
+            "type-hint": "Sélectionnez le type de style",
+            "font": "Famille de polices"
         },
         "boss-bar-configuration": {
             "edit-themes": "Fermer",
@@ -59,6 +60,10 @@
                 "center": "Centre",
                 "left": "Gauche",
                 "right": "Droite"
+            },
+            "woundsSystem": {
+                "hint": "Si votre système utilise des blessures au lieu de points de vie, activez cette option.",
+                "name": "Système de blessures"
             }
         }
     }

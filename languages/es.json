@@ -15,7 +15,8 @@
             "textSize": "Tamaño de fuente",
             "title": "Configuración del estilo de la barra principal",
             "type": "Tipo de estilo",
-            "type-hint": "Seleccione el tipo de estilo"
+            "type-hint": "Seleccione el tipo de estilo",
+            "font": "Familia de fuentes"
         },
         "boss-bar-configuration": {
             "edit-themes": "Cerca",
@@ -59,6 +60,10 @@
                 "center": "Centro",
                 "left": "Izquierda",
                 "right": "Bien"
+            },
+            "woundsSystem": {
+                "hint": "Si su sistema usa heridas en lugar de puntos de vida, habilite esta opción.",
+                "name": "Sistema de heridas"
             }
         }
     }

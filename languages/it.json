@@ -15,7 +15,8 @@
             "textSize": "Dimensione carattere",
             "title": "Configurazione stile barra boss",
             "type": "Tipo di stile",
-            "type-hint": "Seleziona il tipo di stile"
+            "type-hint": "Seleziona il tipo di stile",
+            "font": "Famiglia di caratteri"
         },
         "boss-bar-configuration": {
             "edit-themes": "Vicino",
@@ -59,6 +60,10 @@
                 "center": "Centro",
                 "left": "Sinistra",
                 "right": "Giusto"
+            },
+            "woundsSystem": {
+                "hint": "Se il tuo sistema utilizza ferite invece di punti ferita, abilita questa opzione.",
+                "name": "Sistema delle ferite"
             }
         }
     }

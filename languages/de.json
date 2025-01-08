@@ -15,7 +15,8 @@
             "textSize": "Schriftgröße",
             "title": "Konfiguration des Boss-Bar-Stils",
             "type": "Stiltyp",
-            "type-hint": "Wählen Sie den Stiltyp aus"
+            "type-hint": "Wählen Sie den Stiltyp aus",
+            "font": "Schriftfamilie"
         },
         "boss-bar-configuration": {
             "edit-themes": "Schließen",
@@ -59,6 +60,10 @@
                 "center": "Center",
                 "left": "Links",
                 "right": "Rechts"
+            },
+            "woundsSystem": {
+                "hint": "Wenn Ihr System Wunden anstelle von Trefferpunkten verwendet, aktivieren Sie diese Option.",
+                "name": "Wundsystem"
             }
         }
     }

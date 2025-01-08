@@ -130,6 +130,7 @@ class Bar {
         this.#actor = actor;
         this.#style = getSetting("barStyles").find(s => s.id === style) ?? getSetting("barStyles")[0] ?? DEFAULT_BAR_STYLE;
         this.hideName = hideName;
+        this.useWounds = getSetting("woundsSystem");
     }
     
     #actor;
@@ -153,7 +154,8 @@ class Bar {
     }
 
     get hpPercent() {
-        return Math.max(0, Math.round((100 * this.currentHp) / this.maxHp));
+        if (this.useWounds) return Math.max(0, Math.round((100 * (this.maxHp - this.currentHp)) / this.maxHp));
+        else return Math.max(0, Math.round((100 * this.currentHp) / this.maxHp));
     }
 
     get name() {
