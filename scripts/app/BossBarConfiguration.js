@@ -105,8 +105,8 @@ export class BossBarConfiguration extends HandlebarsApplication {
         html.querySelector("#save-pan").addEventListener("click", (event) => {
             this.saveData();
             this.close();
-            const tokenActor = this.actors.find((a) => a.document.token)
-            Socket.cameraPan({ uuid: tokenActor.document.token.uuid, scale: 1.8, duration: 1000 });
+            const token = this.actors.find((a) => a.document.getActiveTokens()[0])?.document?.getActiveTokens()[0];
+            Socket.cameraPan({ uuid: token?.document?.uuid, scale: 1.8, duration: 1000 });
         });
         html.querySelector("#edit-themes").addEventListener("click", (event) => {
             this.close();
