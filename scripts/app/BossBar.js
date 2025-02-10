@@ -102,6 +102,7 @@ export class BossBar extends HandlebarsApplication {
     _onRender(context, options) {
         super._onRender(context, options);
         foundry.applications.instances.delete(this.APP_ID);
+        if(!game.user.isGM) return;
         this.element.querySelector(".window-header").addEventListener("contextmenu", (event) => {
             event.preventDefault();
             new BossBarConfiguration().render(true);
