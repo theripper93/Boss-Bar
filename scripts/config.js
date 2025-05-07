@@ -2,9 +2,8 @@ import { BossBarConfiguration } from "./app/BossBarConfiguration.js";
 
 export function initConfig() {
     Hooks.on("getSceneControlButtons", (controls) => {
-        controls
-            .find((c) => c.name === "token")
-            .tools.push({
+        console.log("Boss Bar | getSceneControlButtons", controls);
+        controls.tokens.tools.bossBar = {
                 name: "bossBar",
                 title: "bossbar.controls.bossUI.name",
                 icon: "fas fa-pastafarianism",
@@ -14,6 +13,6 @@ export function initConfig() {
                     await BossBarConfiguration.cleanUpActors();
                     new BossBarConfiguration().render(true);
                 },
-            });
+            };
     });
 }
