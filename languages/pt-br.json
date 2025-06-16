@@ -59,7 +59,7 @@
             "title": "Configuraão Boss Bar",
             "no-actors": "Nenhum ator selecionado ou presente na cena.",
             "no-scene": "Nenhuma cena disponível. Por favor, veja uma cena e tente novamente.",
-            "save-pan": "Salvar e Focar Câmera",
+            "save-pan": "Salvar e Focar",
             "edit-themes": "Fechar e Editar Temas",
             "hideNameHint": "Esconder o nome do ator na Boss Bar"
         },
