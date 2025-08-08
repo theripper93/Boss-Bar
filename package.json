@@ -17,6 +17,7 @@
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
+    "translate": "node translate-all.js",
     "create": "node createApp.js"
   }
 }
