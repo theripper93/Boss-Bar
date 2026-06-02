@@ -29,7 +29,7 @@ export class BarStyleConfiguration extends HandlebarsApplication {
         return {
             content: {
                 template: `modules/${MODULE_ID}/templates/${this.APP_ID}.hbs`,
-                classes: ["standard-form"],
+                classes: ["standard-form", "scrollable"],
                 scrollable: [],
             },
         };
@@ -101,7 +101,7 @@ export class BarStyleConfiguration extends HandlebarsApplication {
         const data = await new FormBuilder().size({width: 400}).title(`${MODULE_ID}.${this.APP_ID}.add`).text({name: "name", label: "Name"}).render();
         if (!data || !data.name) return;
         const styles = getSetting("barStyles");
-        styles.push(mergeClone(DEFAULT_BAR_STYLE, {id: randomID(), ...data}));
+        styles.push(mergeClone(DEFAULT_BAR_STYLE, {id: foundry.utils.randomID(), ...data}));
         await setSetting("barStyles", styles);
         this.render();
     }

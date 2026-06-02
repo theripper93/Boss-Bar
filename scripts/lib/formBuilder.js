@@ -553,11 +553,11 @@ export class FormHelper extends foundry.applications.api.HandlebarsApplicationMi
 
     _onChangeForm(formConfig, event) {
         super._onChangeForm(formConfig, event);
-        const formData = new FormDataExtended(this.element);
+        const formData = new foundry.applications.ux.FormDataExtended(this.element);
     }
 
     getFormData() {
-        const formData = new FormDataExtended(this.element);
+        const formData = new foundry.applications.ux.FormDataExtended(this.element);
         return foundry.utils.expandObject(formData.object);
     }
 
